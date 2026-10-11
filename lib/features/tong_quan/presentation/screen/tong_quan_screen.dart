@@ -172,7 +172,7 @@ class _NoiDung extends StatelessWidget {
                       color: p.huyetAp,
                       background: p.huyetApSoft,
                       value: '${duLieu.thietBiHoatDong}/${duLieu.tongThietBi}',
-                      label: 'Thiết bị hoạt động',
+                      label: 'Thiết bị',
                       onTap: () => context.router.push(const ThietBiRoute()),
                     ),
                   ),

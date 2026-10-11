@@ -71,7 +71,7 @@ class BangChiSo extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              tk.loai.tenChiSo.replaceFirst('Huyết áp', 'HA'),
+                              _tenNgan(tk.loai.tenChiSo),
                               style: context.text.labelLarge,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -108,6 +108,14 @@ class BangChiSo extends StatelessWidget {
       ],
     );
   }
+}
+
+/// "Huyết áp tâm thu" → "Tâm thu" cho vừa cột tên của bảng.
+String _tenNgan(String tenChiSo) {
+  const tienTo = 'Huyết áp ';
+  if (!tenChiSo.startsWith(tienTo)) return tenChiSo;
+  final ten = tenChiSo.substring(tienTo.length);
+  return ten[0].toUpperCase() + ten.substring(1);
 }
 
 /// Xếp hạng những người có nhiều cảnh báo nhất.

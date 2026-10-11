@@ -5,6 +5,7 @@ import '../../../../core/error/failures.dart';
 import '../../../../core/utils/dinh_dang.dart';
 import '../../../../mock/mock_database.dart';
 import '../../../../mock/mock_query.dart';
+import '../../../canh_bao/domain/entity/canh_bao.dart';
 import '../../../lan_do/domain/entity/loai_chi_so.dart';
 import '../../../thiet_bi/domain/entity/thiet_bi.dart';
 import '../../../thong_ke/domain/entity/thong_ke.dart';
@@ -71,11 +72,25 @@ class MockTongQuanRepository implements TongQuanRepository {
             .where((tb) => tb.trangThai == TrangThaiThietBi.hoatDong)
             .length,
         tongThietBi: _db.bangThietBi.length,
-        canhBaoGanDay: canhBao.take(3).toList(),
+        canhBaoGanDay: _moiLanDoMotCanhBao(canhBao).take(3).toList(),
         lanDoGanDay: lanDo7Ngay.take(4).toList(),
         xuHuong: xuHuong,
       );
     });
+  }
+
+  /// Mỗi lần đo chỉ giữ cảnh báo nặng nhất, để danh sách "gần đây" không bị
+  /// một lần đo có nhiều chỉ số vượt ngưỡng chiếm hết chỗ.
+  List<CanhBaoDayDu> _moiLanDoMotCanhBao(List<CanhBaoDayDu> canhBao) {
+    final theoLanDo = <String, CanhBaoDayDu>{};
+    for (final cb in canhBao) {
+      final hienCo = theoLanDo[cb.canhBao.maLanDo];
+      if (hienCo == null ||
+          cb.canhBao.mucDo.index > hienCo.canhBao.mucDo.index) {
+        theoLanDo[cb.canhBao.maLanDo] = cb;
+      }
+    }
+    return theoLanDo.values.toList();
   }
 
   double _trungBinh(List<double> giaTri) =>

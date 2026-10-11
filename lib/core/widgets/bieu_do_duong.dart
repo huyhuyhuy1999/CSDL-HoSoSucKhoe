@@ -73,9 +73,10 @@ class BieuDoDuong extends StatelessWidget {
       if (vuotTren) minY = min(minY, cao - khoang * 0.2);
       if (vuotDuoi) maxY = max(maxY, thap + khoang * 0.2);
     }
-    final bien = max((maxY - minY) * 0.15, 0.5);
-    minY -= bien;
-    maxY += bien;
+    // Chia vạch theo bước "tròn" (1, 2, 5 × 10ⁿ) và nới trục ra vạch gần nhất.
+    final buoc = _buocTron((maxY - minY) / 4);
+    minY = ((minY - buoc * 0.25) / buoc).floorToDouble() * buoc;
+    maxY = ((maxY + buoc * 0.25) / buoc).ceilToDouble() * buoc;
 
     final soMoc = nhanTrucX.length;
     final buocNhan = max(1, (soMoc / 5).ceil());
@@ -87,15 +88,16 @@ class BieuDoDuong extends StatelessWidget {
           height: height,
           child: LineChart(
             LineChartData(
-              minX: 0,
-              maxX: max(1, soMoc - 1).toDouble(),
+              // Chừa nửa mốc ở hai đầu để điểm đầu, điểm cuối không bị cắt.
+              minX: -0.5,
+              maxX: max(1, soMoc - 1) + 0.5,
               minY: minY,
               maxY: maxY,
               clipData: const FlClipData.all(),
               borderData: FlBorderData(show: false),
               gridData: FlGridData(
                 drawVerticalLine: false,
-                horizontalInterval: (maxY - minY) / 4,
+                horizontalInterval: buoc,
                 getDrawingHorizontalLine: (_) =>
                     FlLine(color: p.border, strokeWidth: 1),
               ),
@@ -116,19 +118,14 @@ class BieuDoDuong extends StatelessWidget {
                   sideTitles: SideTitles(
                     showTitles: true,
                     reservedSize: 40,
-                    interval: (maxY - minY) / 4,
-                    getTitlesWidget: (value, meta) {
-                      if (value == meta.min || value == meta.max) {
-                        return const SizedBox.shrink();
-                      }
-                      return SideTitleWidget(
-                        meta: meta,
-                        child: Text(
-                          dinhDang(value),
-                          style: context.text.labelSmall,
-                        ),
-                      );
-                    },
+                    interval: buoc,
+                    getTitlesWidget: (value, meta) => SideTitleWidget(
+                      meta: meta,
+                      child: Text(
+                        dinhDang(value),
+                        style: context.text.labelSmall,
+                      ),
+                    ),
                   ),
                 ),
                 bottomTitles: AxisTitles(
@@ -231,6 +228,21 @@ class BieuDoDuong extends StatelessWidget {
       ],
     );
   }
+}
+
+/// Làm tròn [thô] lên bước gần nhất dạng 1, 2 hoặc 5 × 10ⁿ.
+double _buocTron(double tho) {
+  if (tho <= 0) return 1;
+  final luyThua = pow(10, (log(tho) / ln10).floor()).toDouble();
+  final phan = tho / luyThua;
+  final tron = phan <= 1
+      ? 1
+      : phan <= 2
+      ? 2
+      : phan <= 5
+      ? 5
+      : 10;
+  return tron * luyThua;
 }
 
 /// Một mục chú giải: chấm màu và nhãn.

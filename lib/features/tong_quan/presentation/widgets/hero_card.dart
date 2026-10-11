@@ -35,14 +35,14 @@ class HeroCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Đường điện tim trang trí chạy ngang đáy thẻ.
+          // Đường điện tim trang trí ở nửa phải, ngang hàng với con số lớn.
           Positioned(
-            left: 0,
             right: 0,
-            bottom: 0,
-            height: 78,
+            top: 56,
+            width: 210,
+            height: 72,
             child: CustomPaint(
-              painter: _DuongDienTimPainter(trang.withValues(alpha: 0.16)),
+              painter: _DuongDienTimPainter(trang.withValues(alpha: 0.3)),
             ),
           ),
           Padding(
@@ -156,8 +156,12 @@ class _DuongDienTimPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    // Mờ dần về bên trái để không tranh chỗ với chữ.
     final paint = Paint()
-      ..color = color
+      ..shader = LinearGradient(
+        colors: [color.withValues(alpha: 0), color],
+        stops: const [0, 0.55],
+      ).createShader(Offset.zero & size)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2.5
       ..strokeCap = StrokeCap.round
@@ -180,9 +184,9 @@ class _DuongDienTimPainter extends CustomPainter {
       (1.00, 0.00),
     ];
 
-    const rongNhip = 150.0;
-    final duongNen = size.height * 0.62;
-    final bienDo = size.height * 0.62;
+    const rongNhip = 105.0;
+    final duongNen = size.height * 0.6;
+    final bienDo = size.height * 0.6;
     final path = Path()..moveTo(0, duongNen);
 
     for (var batDau = 0.0; batDau < size.width; batDau += rongNhip) {

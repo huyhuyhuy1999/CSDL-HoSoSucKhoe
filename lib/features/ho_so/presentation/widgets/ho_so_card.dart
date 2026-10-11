@@ -45,7 +45,7 @@ class HoSoCard extends StatelessWidget {
                     const SizedBox(height: 3),
                     Text(
                       '${nd.gioiTinh.nhan} · ${nd.tuoi} tuổi · '
-                      'Nhóm máu ${hoSo.hoSo.nhomMau}',
+                      'Nhóm ${hoSo.hoSo.nhomMau}',
                       style: context.text.bodySmall,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

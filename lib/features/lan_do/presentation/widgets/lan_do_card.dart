@@ -34,9 +34,18 @@ class LanDoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final p = context.palette;
     final thoiGian = lanDo.lanDo.thoiGianDo;
-    final gio = hienNgay
-        ? '${DinhDang.gio(thoiGian)} · ${DinhDang.nhomNgay(thoiGian)}'
-        : DinhDang.gio(thoiGian);
+    final homNay = thoiGian.cungNgay(DateTime.now());
+    final gio = switch ((hienNgay, hienNguoiDung)) {
+      (false, _) => DinhDang.gio(thoiGian),
+      // Trong trang của một người: giờ là tiêu đề nên ghi rõ ngày.
+      (true, false) =>
+        '${DinhDang.gio(thoiGian)} · ${DinhDang.nhomNgay(thoiGian)}',
+      // Kèm tên người: dòng phụ ngắn, bỏ ngày nếu là hôm nay.
+      (true, true) =>
+        homNay
+            ? DinhDang.gio(thoiGian)
+            : '${DinhDang.gio(thoiGian)} ${DinhDang.ngayNgan(thoiGian)}',
+    };
 
     return AppCard(
       onTap: onTap,

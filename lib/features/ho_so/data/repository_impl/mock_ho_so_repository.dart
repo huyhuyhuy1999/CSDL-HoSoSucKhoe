@@ -32,7 +32,7 @@ class MockHoSoRepository implements HoSoRepository {
         ketQua.add(_db.ghepHoSo(nd));
       }
       ketQua.sort(
-        (a, b) => boDau(a.nguoiDung.hoTen).compareTo(boDau(b.nguoiDung.hoTen)),
+        (a, b) => _khoaSapXep(a.nguoiDung).compareTo(_khoaSapXep(b.nguoiDung)),
       );
       return ketQua;
     });
@@ -112,6 +112,13 @@ class MockHoSoRepository implements HoSoRepository {
     });
     if (ketQua.isRight()) _bus.notify();
     return ketQua;
+  }
+
+  /// Danh sách tiếng Việt xếp theo tên (từ cuối cùng) trước, rồi tới họ đệm.
+  String _khoaSapXep(NguoiDung nguoiDung) {
+    final hoTen = boDau(nguoiDung.hoTen.trim());
+    final ten = hoTen.split(RegExp(r'\s+')).last;
+    return '$ten $hoTen';
   }
 
   NguoiDung _timNguoiDung(String maNguoiDung) {

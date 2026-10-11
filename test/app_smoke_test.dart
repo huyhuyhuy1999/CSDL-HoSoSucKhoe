@@ -80,7 +80,8 @@ void main() {
     await moApp(tester);
     await moTab(tester, 'Hồ sơ');
 
-    await tester.tap(find.text('Bùi Thị Lan'));
+    // Danh sách xếp theo tên nên Nguyễn Văn An đứng đầu.
+    await tester.tap(find.text('Nguyễn Văn An'));
     await tester.pumpAndSettle();
 
     expect(find.text('Chỉ số mới nhất'), findsOneWidget);
