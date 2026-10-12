@@ -51,8 +51,8 @@ EOF
 )
 
 lech=0
-printf '%-36s %-22s %-22s %s\n' 'Phép đối chiếu' 'SQL Server' 'SQLite' ''
-printf '%s\n' "$(printf '%.0s-' {1..90})"
+printf '%-36s  %-22s  %-22s  %s\n' 'Phép đối chiếu' 'SQL Server' 'SQLite' ''
+printf '%s\n' "$(printf '%.0s-' {1..93})"
 
 while IFS=$'\t' read -r nhan truy_van; do
   # SQL Server cần tiền tố N cho chuỗi Unicode; SQLite thì không.
@@ -68,7 +68,7 @@ while IFS=$'\t' read -r nhan truy_van; do
     ket_qua='LỆCH'
     lech=1
   fi
-  printf '%-36s %-22s %-22s %s\n' "$nhan" "$mssql" "$sqlite" "$ket_qua"
+  printf '%-36s  %-22s  %-22s  %s\n' "$nhan" "$mssql" "$sqlite" "$ket_qua"
 done <<< "$TRUY_VAN"
 
 echo

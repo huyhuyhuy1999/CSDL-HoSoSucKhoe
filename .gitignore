@@ -52,3 +52,6 @@ app.*.map.json
 
 # Mật khẩu SQL Server cục bộ dùng để kiểm chứng script (tool/sqlserver.sh)
 tool/.sqlserver.env
+
+# File tạm của công cụ sinh tài liệu
+sql/sqlserver/.tam_*.sql

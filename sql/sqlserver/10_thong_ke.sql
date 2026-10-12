@@ -100,7 +100,7 @@ RETURN
     WHERE t.ThuTu = 1;
 GO
 
--- Dùng thử các hàm
+-- A.6 Dùng thử các hàm
 SELECT HoTen, NgaySinh,
        dbo.FN_TinhTuoi(NgaySinh, '2026-10-10') AS TuoiNgay10Thang10
 FROM NGUOI_DUNG
@@ -237,7 +237,7 @@ JOIN NGUOI_DUNG      AS nd ON nd.MaNguoiDung = ld.MaNguoiDung
 JOIN LOAI_CHI_SO     AS l  ON l.MaLoaiChiSo = cb.MaLoaiChiSo;
 GO
 
--- Dùng thử các view
+-- B.5 Dùng thử các view
 SELECT HoTen, Tuoi, BMI, PhanLoaiBMI, NhomMau, SoLanDo, SoCanhBaoChuaXem
 FROM V_HO_SO_TONG_HOP
 ORDER BY SoLanDo DESC;
@@ -402,7 +402,7 @@ BEGIN
 END;
 GO
 
--- Dùng thử các thủ tục
+-- C.5 Dùng thử các thủ tục
 BEGIN TRANSACTION;
 
     DECLARE @MaMoi INT;
