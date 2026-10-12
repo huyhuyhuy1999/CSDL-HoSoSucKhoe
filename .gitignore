@@ -49,3 +49,6 @@ app.*.map.json
 
 # Bản build phát hành (IPA/APK) — đính kèm ở GitHub Releases
 /dist/
+
+# Mật khẩu SQL Server cục bộ dùng để kiểm chứng script (tool/sqlserver.sh)
+tool/.sqlserver.env
