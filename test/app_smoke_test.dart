@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ho_so_suc_khoe/app/app.dart';
+import 'package:ho_so_suc_khoe/core/database/app_database.dart';
 import 'package:ho_so_suc_khoe/core/di/injection.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
@@ -89,5 +90,77 @@ void main() {
     expect(find.text('Chỉ số mới nhất'), findsOneWidget);
     expect(find.text('Thêm lần đo'), findsOneWidget);
     expect(find.text('Tiền sử bệnh'), findsOneWidget);
+  });
+
+  testWidgets(
+    'thêm lần đo vượt ngưỡng: trigger sinh cảnh báo và giao diện hiện ra',
+    (tester) async {
+      await moApp(tester);
+      final csdl = getIt<AppDatabase>();
+      final soCanhBaoTruoc = csdl.demSoDong()['CANH_BAO']!;
+
+      await moTab(tester, 'Hồ sơ');
+      await tester.tap(find.text('Nguyễn Văn An'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Thêm lần đo'));
+      await tester.pumpAndSettle();
+
+      // Ô thứ hai của form là nhịp tim; 135 bpm nằm ngoài khoảng 50–120.
+      await tester.enterText(find.byType(TextFormField).at(1), '135');
+      await tester.tap(find.text('Lưu lần đo'));
+      await tester.pumpAndSettle();
+
+      // App không tự chèn cảnh báo: dòng mới trong CANH_BAO là do trigger tạo.
+      expect(csdl.demSoDong()['LAN_DO'], 266);
+      expect(csdl.demSoDong()['CANH_BAO'], soCanhBaoTruoc + 1);
+      expect(find.text('Chi tiết lần đo'), findsOneWidget);
+      expect(find.text('Nguy hiểm'), findsWidgets);
+      expect(find.text('Nhịp tim cao'), findsOneWidget);
+    },
+  );
+
+  testWidgets('giá trị ngoài khoảng hợp lệ bị form chặn, không ghi vào CSDL', (
+    tester,
+  ) async {
+    await moApp(tester);
+    final csdl = getIt<AppDatabase>();
+
+    await moTab(tester, 'Lịch sử');
+    await tester.tap(find.text('Thêm lần đo'));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextFormField).at(1), '400');
+    await tester.tap(find.text('Lưu lần đo'));
+    await tester.pumpAndSettle();
+
+    expect(
+      find.textContaining('Phải trong khoảng 20 – 250 bpm'),
+      findsOneWidget,
+    );
+    expect(csdl.demSoDong()['LAN_DO'], 265);
+  });
+
+  testWidgets('xóa hồ sơ: lần đo và cảnh báo của người đó bị xóa theo', (
+    tester,
+  ) async {
+    await moApp(tester);
+    final csdl = getIt<AppDatabase>();
+
+    await moTab(tester, 'Hồ sơ');
+    await tester.enterText(find.byType(TextField), 'Oanh');
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Lý Thị Oanh'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byTooltip('Thao tác khác'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Xóa hồ sơ'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Xóa'));
+    await tester.pumpAndSettle();
+
+    // Lý Thị Oanh (người dùng 12) có 15 lần đo trong dữ liệu mẫu.
+    expect(csdl.demSoDong()['NGUOI_DUNG'], 11);
+    expect(csdl.demSoDong()['HO_SO_SUC_KHOE'], 11);
+    expect(csdl.demSoDong()['LAN_DO'], 250);
   });
 }

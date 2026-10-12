@@ -397,8 +397,14 @@ class _ChiSoChiTiet extends StatelessWidget {
           const SizedBox(height: AppSpacing.sm),
           Row(
             children: [
-              Text('Khoảng bình thường', style: context.text.labelSmall),
-              const Spacer(),
+              Expanded(
+                child: Text(
+                  'Khoảng bình thường',
+                  style: context.text.labelSmall,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
               Text(
                 loai.khoangBinhThuong,
                 style: context.text.labelSmall!.copyWith(
