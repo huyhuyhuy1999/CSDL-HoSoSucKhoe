@@ -139,12 +139,6 @@ class _CoSoDuLieuSheetState extends State<_CoSoDuLieuSheet> {
               ],
             ),
           ),
-          const SizedBox(height: AppSpacing.md),
-          Text(
-            'Cảnh báo không được nhập tay: trigger trên bảng CHI_TIET_LAN_DO tự '
-            'tạo cảnh báo khi một giá trị đo nằm ngoài khoảng bình thường.',
-            style: context.text.bodySmall,
-          ),
           const SizedBox(height: AppSpacing.lg),
           OutlinedButton.icon(
             onPressed: _datLai,

@@ -2,7 +2,7 @@ name: ho_so_suc_khoe
 description: "Ứng dụng quản lý hồ sơ sức khỏe và lịch sử theo dõi chỉ số sức khỏe"
 publish_to: 'none'
 
-version: 0.2.0+2
+version: 0.2.1+3
 
 environment:
   sdk: ^3.13.0
