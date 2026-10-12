@@ -165,7 +165,7 @@ ROLLBACK TRANSACTION;
 
 | MaNguoiDung | HoTen | GioiTinh | NgaySinh | NgayTao |
 |---|---|---|---|---|
-| 37 | Trịnh Gia Bảo | Nam | 1999-02-14 | 2026-10-12 18:54:06 |
+| 27 | Trịnh Gia Bảo | Nam | 1999-02-14 | 2026-10-12 19:14:04 |
 
 #### 2.2 Thêm nhiều người dùng trong một lệnh; các cột không bắt buộc để NULL
 
@@ -503,5 +503,3 @@ ORDER BY NhomTuoi;
 | Form "Thêm hồ sơ" | Mục 2.1 |
 | Form "Sửa hồ sơ" | Mục 3.1 |
 | Nút "Xóa hồ sơ" | Mục 4 |
-
-Ứng dụng dùng SQLite nên câu lệnh được viết lại theo cú pháp SQLite trong `lib/features/ho_so/data/repository_impl/sqlite_ho_so_repository.dart`; việc tìm không dấu dùng hàm `bo_dau()` do ứng dụng đăng ký thay cho `COLLATE Latin1_General_CI_AI`.

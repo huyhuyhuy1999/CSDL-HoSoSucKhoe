@@ -136,5 +136,3 @@ Các kết quả dưới đây được lấy bằng cách chạy script trên S
 | Mục "Cảnh báo" trong chi tiết hồ sơ | Mục 4.1 |
 | Huy hiệu số trên thanh điều hướng | Mục 3.2 (đếm số dòng) |
 | Mục "Cảnh báo của lần đo" trong chi tiết lần đo | Mục 4.1, lọc theo `MaLanDo` thay cho người dùng |
-
-Trên ứng dụng (SQLite), trigger tương đương là `TRG_CHI_TIET_LAN_DO_CanhBao_Them` và `TRG_CHI_TIET_LAN_DO_CanhBao_Sua` trong `sql/sqlite/02_trigger.sql`. Khác biệt chính: trigger của SQLite chạy cho từng dòng (dùng `NEW`), và mỗi trigger chỉ gắn với một sự kiện.

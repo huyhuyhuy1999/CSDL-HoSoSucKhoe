@@ -229,12 +229,12 @@ ROLLBACK TRANSACTION;
 
 | MaCanhBao | MucDo | NoiDung | ThoiGianTao | DaXem |
 |---|---|---|---|---|
-| 125 | Nguy hiểm | Nhịp tim 135 bpm cao hơn khoảng bình thường (60 – 100 bpm). | 2026-10-10 21:00:00 | 0 |
-| 126 | Cần chú ý | SpO2 93 % thấp hơn khoảng bình thường (95 – 100 %). | 2026-10-10 21:00:00 | 0 |
+| 119 | Nguy hiểm | Nhịp tim 135 bpm cao hơn khoảng bình thường (60 – 100 bpm). | 2026-10-10 21:00:00 | 0 |
+| 120 | Cần chú ý | SpO2 93 % thấp hơn khoảng bình thường (95 – 100 %). | 2026-10-10 21:00:00 | 0 |
 
 | MaCanhBao | MucDo | NoiDung |
 |---|---|---|
-| 126 | Cần chú ý | SpO2 93 % thấp hơn khoảng bình thường (95 – 100 %). |
+| 120 | Cần chú ý | SpO2 93 % thấp hơn khoảng bình thường (95 – 100 %). |
 
 #### 2.3 Giá trị ngoài khoảng hợp lệ (sửa nhịp tim thành 400 bpm) bị trigger từ chối
 
@@ -575,5 +575,3 @@ SELECT
 | Mục "Cảnh báo" trong chi tiết hồ sơ | Mục 4.1 |
 | Huy hiệu số trên thanh điều hướng | Mục 3.2 (đếm số dòng) |
 | Mục "Cảnh báo của lần đo" trong chi tiết lần đo | Mục 4.1, lọc theo `MaLanDo` thay cho người dùng |
-
-Trên ứng dụng (SQLite), trigger tương đương là `TRG_CHI_TIET_LAN_DO_CanhBao_Them` và `TRG_CHI_TIET_LAN_DO_CanhBao_Sua` trong `sql/sqlite/02_trigger.sql`. Khác biệt chính: trigger của SQLite chạy cho từng dòng (dùng `NEW`), và mỗi trigger chỉ gắn với một sự kiện.

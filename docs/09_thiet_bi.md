@@ -122,7 +122,7 @@ ROLLBACK TRANSACTION;
 
 | MaThietBi | TenThietBi | MaDinhDanh | TrangThai |
 |---|---|---|---|
-| 10 | ESP32 Health Monitor (phòng 2) | ESP32-A4:CF:12:AA:01:9C | Hoạt động |
+| 9 | ESP32 Health Monitor (phòng 2) | ESP32-A4:CF:12:AA:01:9C | Hoạt động |
 
 ### 3. SỬA (UPDATE)
 

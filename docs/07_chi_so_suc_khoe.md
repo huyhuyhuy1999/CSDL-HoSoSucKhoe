@@ -146,7 +146,7 @@ ROLLBACK TRANSACTION;
 | 3 | SPO2 | SpO2 | % |
 | 4 | HA_TAM_THU | Huyết áp tâm thu | mmHg |
 | 5 | HA_TAM_TRUONG | Huyết áp tâm trương | mmHg |
-| 10 | DUONG_HUYET | Đường huyết | mmol/L |
+| 9 | DUONG_HUYET | Đường huyết | mmol/L |
 
 #### 1.3 Sửa đơn vị đo và nới khoảng bình thường của một chỉ số
 

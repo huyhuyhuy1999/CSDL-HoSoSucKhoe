@@ -167,11 +167,11 @@ ROLLBACK TRANSACTION;
 
 | MaLanDo | ThoiGianDo | TenChiSo | GiaTri | DonViDo |
 |---|---|---|---|---|
-| 294 | 2026-10-10 20:15:00 | Nhiệt độ | 36.7 | °C |
-| 294 | 2026-10-10 20:15:00 | Nhịp tim | 81.0 | bpm |
-| 294 | 2026-10-10 20:15:00 | SpO2 | 98.0 | % |
-| 294 | 2026-10-10 20:15:00 | Huyết áp tâm thu | 121.0 | mmHg |
-| 294 | 2026-10-10 20:15:00 | Huyết áp tâm trương | 79.0 | mmHg |
+| 282 | 2026-10-10 20:15:00 | Nhiệt độ | 36.7 | °C |
+| 282 | 2026-10-10 20:15:00 | Nhịp tim | 81.0 | bpm |
+| 282 | 2026-10-10 20:15:00 | SpO2 | 98.0 | % |
+| 282 | 2026-10-10 20:15:00 | Huyết áp tâm thu | 121.0 | mmHg |
+| 282 | 2026-10-10 20:15:00 | Huyết áp tâm trương | 79.0 | mmHg |
 
 #### 2.2 Thêm một lần đo nhập thủ công: không có thiết bị, thời gian mặc định là hiện tại
 
@@ -192,7 +192,7 @@ ROLLBACK TRANSACTION;
 
 | MaLanDo | MaNguoiDung | MaThietBi | NguonDuLieu | ThoiGianDo |
 |---|---|---|---|---|
-| 295 | 5 | *NULL* | Thủ công | 2026-10-12 18:54:15 |
+| 283 | 5 | *NULL* | Thủ công | 2026-10-12 19:14:12 |
 
 ### 3. SỬA (UPDATE)
 

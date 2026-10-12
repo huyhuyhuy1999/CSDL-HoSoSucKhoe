@@ -195,7 +195,7 @@ ROLLBACK TRANSACTION;
 
 | HoTen | MaHoSo | ChieuCao | CanNang | NhomMau | DiUng | NgayCapNhat |
 |---|---|---|---|---|---|---|
-| Trịnh Gia Bảo | 18 | 172.0 | 65.5 | A+ | Tôm, cua | 2026-10-12 18:54:09 |
+| Trịnh Gia Bảo | 16 | 172.0 | 65.5 | A+ | Tôm, cua | 2026-10-12 19:14:07 |
 
 ### 3. SỬA (UPDATE)
 
@@ -230,7 +230,7 @@ ROLLBACK TRANSACTION;
 
 | MaHoSo | CanNang | TienSuBenh | NgayCapNhatMoi |
 |---|---|---|---|
-| 11 | 82.5 | Béo phì độ I, đang theo chế độ giảm cân. | 2026-10-12 18:54:10 |
+| 11 | 82.5 | Béo phì độ I, đang theo chế độ giảm cân. | 2026-10-12 19:14:07 |
 
 ### 4. XÓA (DELETE)
 

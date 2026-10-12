@@ -41,17 +41,18 @@ Các kết quả dưới đây được lấy bằng cách chạy script trên S
 
 ## 5. Tương ứng trong ứng dụng
 
-Ứng dụng dùng SQLite, vốn không có FUNCTION và PROCEDURE viết bằng SQL. Các view được tạo lại trong `sql/sqlite/04_view.sql`; phần còn lại nằm trong các lớp repository.
+Các đối tượng và báo cáo ở trên tương ứng với những chức năng sau của ứng dụng:
 
-| Trên SQL Server | Trên ứng dụng (SQLite) |
+| Đối tượng / truy vấn | Chức năng trên ứng dụng |
 |---|---|
-| `FN_TinhTuoi`, `FN_TinhBMI` | Công thức viết thẳng trong view `V_HO_SO_TONG_HOP` |
-| `FN_DanhGiaChiSo` | Cột `MucDo` của view `V_CHI_TIET_DANH_GIA` |
-| `V_HO_SO_TONG_HOP`, `V_CHI_TIET_DANH_GIA`, `V_LAN_DO_TONG_HOP`, `V_CANH_BAO_CHI_TIET` | Cùng tên, cùng ý nghĩa |
-| `SP_ThemLanDo` | `SqliteLanDoRepository.them()` — cùng các bước kiểm tra, cùng một giao dịch |
-| `SP_LichSuDo` | `SqliteLanDoRepository.layLichSu()` |
-| `SP_ThongKeChiSo` và mục H | `SqliteThongKeRepository.layThongKe()` — màn hình Thống kê |
-| `SP_TimNguoiDung` | `SqliteHoSoRepository.layDanhSach()` — danh sách hồ sơ |
-| Mục H.1 | `SqliteTongQuanRepository.layTongQuan()` — màn hình Tổng quan |
-
-Hai hệ được đối chiếu tự động bằng `tool/doi_chieu_hai_he.sh` (kết quả ở Phần 12).
+| `FN_TinhTuoi`, `FN_TinhBMI`, `FN_PhanLoaiBMI` | Tuổi, BMI và phân loại BMI ở danh sách và chi tiết hồ sơ |
+| `FN_DanhGiaChiSo` | Nhãn "Bình thường" / "Cần chú ý" / "Nguy hiểm" của từng chỉ số ở chi tiết lần đo |
+| `FN_ChiSoMoiNhat` | Mục "Chỉ số mới nhất" ở chi tiết hồ sơ |
+| `V_HO_SO_TONG_HOP` | Danh sách hồ sơ: mỗi người một dòng kèm số lần đo và lần đo gần nhất |
+| `V_LAN_DO_TONG_HOP` | Thẻ lần đo ở tab Lịch sử: các chỉ số trên một dòng, kèm mức độ nặng nhất |
+| `V_CANH_BAO_CHI_TIET` | Tab Cảnh báo |
+| `SP_ThemLanDo` | Form "Thêm lần đo": cùng các bước kiểm tra, lưu trong một giao dịch |
+| `SP_LichSuDo` | Tab Lịch sử với bộ lọc theo người và khoảng thời gian |
+| `SP_TimNguoiDung` | Ô tìm kiếm và chip lọc ở danh sách hồ sơ |
+| `SP_ThongKeChiSo` và mục H | Màn hình Thống kê |
+| Mục H.1 | Màn hình Tổng quan |

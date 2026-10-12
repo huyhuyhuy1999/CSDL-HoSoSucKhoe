@@ -45,7 +45,6 @@ Các file `NN_*.md` trong thư mục này **không sửa trực tiếp**: chúng
 | `{{SQL: tên_file.sql}}` | Từng mục của script kèm kết quả chạy thật |
 | `{{TRUYVAN: SELECT …}}` | Kết quả của một câu truy vấn |
 | `{{KIEMTHU}}` | Bảng kết quả của `11_kiem_thu.sql` |
-| `{{DOICHIEU}}` | Bảng đối chiếu SQL Server với SQLite |
 
 Nhờ vậy câu lệnh, cấu trúc bảng và kết quả trong tài liệu luôn khớp với script. Quy trình cập nhật:
 

@@ -7,9 +7,8 @@
 | Đối tượng | Cách kiểm thử | Số ca |
 |---|---|---|
 | Cơ sở dữ liệu SQL Server (sản phẩm nộp) | Script `11_kiem_thu.sql` chạy trên SQL Server 2022 | 85 |
-| Cơ sở dữ liệu SQLite trong ứng dụng | `test/co_so_du_lieu_test.dart` | 37 |
+| Tầng dữ liệu của ứng dụng: ràng buộc, trigger, view | `test/co_so_du_lieu_test.dart` | 37 |
 | Ứng dụng, từ giao diện tới cơ sở dữ liệu | `test/app_smoke_test.dart` | 7 |
-| Sự thống nhất giữa hai hệ quản trị | `tool/doi_chieu_hai_he.sh` | 27 phép đối chiếu |
 
 Nội dung kiểm thử theo yêu cầu của đề tài: thêm / sửa / xóa, khóa chính, khóa ngoại, dữ liệu không hợp lệ, tìm kiếm, lọc và thống kê; bổ sung thêm ràng buộc duy nhất, xóa dây chuyền và trigger.
 
@@ -18,7 +17,6 @@ Nội dung kiểm thử theo yêu cầu của đề tài: thêm / sửa / xóa, 
 | Thành phần | Phiên bản |
 |---|---|
 | SQL Server | 2022 Developer, chạy trong Docker (`tool/sqlserver.sh`) |
-| SQLite | bản đóng gói kèm gói `sqlite3` 3.7 của Dart |
 | Flutter / Dart | 3.47 / 3.13 |
 | Dữ liệu | Dữ liệu mẫu: 12 người dùng, 6 thiết bị, 265 lần đo, 1110 giá trị đo, 108 cảnh báo |
 
@@ -181,51 +179,15 @@ Sau khi chạy xong, số dòng của các bảng vẫn như ban đầu:
 |---|---|---|---|---|---|
 | 12 | 12 | 6 | 265 | 1110 | 108 |
 
-## 5. Đối chiếu SQL Server và SQLite
+## 5. Kiểm thử trên ứng dụng
 
-Script nộp bài viết cho SQL Server, còn ứng dụng chạy SQLite. Để chắc hai hệ chứa cùng dữ liệu và các view cho cùng kết quả, `tool/doi_chieu_hai_he.sh` chạy cùng một loạt truy vấn tổng hợp trên cả hai:
+### 5.1 Tầng dữ liệu của ứng dụng
 
-| Phép đối chiếu | SQL Server | SQLite | Kết quả |
-|---|---|---|:---:|
-| Số người dùng | 12 | 12 | khớp |
-| Số hồ sơ | 12 | 12 | khớp |
-| Số thiết bị | 6 | 6 | khớp |
-| Số loại chỉ số | 5 | 5 | khớp |
-| Số lần đo | 265 | 265 | khớp |
-| Số giá trị đo | 1110 | 1110 | khớp |
-| Số cảnh báo | 108 | 108 | khớp |
-| Cảnh báo chưa xem | 17 | 17 | khớp |
-| Cảnh báo nguy hiểm | 16 | 16 | khớp |
-| Lần đo nhập thủ công | 55 | 55 | khớp |
-| Lần đo đầu tiên | 2026-09-11 07:21:00 | 2026-09-11 07:21:00 | khớp |
-| Lần đo cuối cùng | 2026-10-10 21:22:00 | 2026-10-10 21:22:00 | khớp |
-| Tổng nhiệt độ × 10 | 80460 | 80460 | khớp |
-| Tổng nhịp tim | 19472 | 19472 | khớp |
-| Tổng SpO2 | 22052 | 22052 | khớp |
-| Tổng huyết áp tâm thu | 25403 | 25403 | khớp |
-| Tổng huyết áp tâm trương | 16175 | 16175 | khớp |
-| Lần đo của người dùng 7 | 35 | 35 | khớp |
-| Lần đo bằng thiết bị 1 | 123 | 123 | khớp |
-| Mã cảnh báo khớp lần đo | 1107079 | 1107079 | khớp |
-| Cảnh báo đã xem khớp mã | 4198 | 4198 | khớp |
-| Lần đo bình thường (view) | 179 | 179 | khớp |
-| Lần đo cần chú ý (view) | 72 | 72 | khớp |
-| Lần đo nguy hiểm (view) | 14 | 14 | khớp |
-| Cảnh báo của người dùng 7 (view) | 38 | 38 | khớp |
-| Tổng BMI × 10 (view) | 2759 | 2759 | khớp |
-| Tổng tuổi (view) | 530 | 530 | khớp |
-
-Dòng "Mã cảnh báo khớp lần đo" là một tổng kiểm tra trên `MaCanhBao × MaLanDo + MaLoaiChiSo`: nó chỉ khớp khi trigger của hai hệ sinh ra cùng những cảnh báo với cùng mã.
-
-## 6. Kiểm thử trên ứng dụng
-
-### 6.1 Cơ sở dữ liệu SQLite
-
-`test/co_so_du_lieu_test.dart` mở một cơ sở dữ liệu mới trong bộ nhớ cho mỗi ca, từ chính các script ở `sql/sqlite/`. 37 ca thuộc các nhóm:
+`test/co_so_du_lieu_test.dart` tạo cho mỗi ca một cơ sở dữ liệu mới, đủ bảng, trigger, view và dữ liệu mẫu. 37 ca thuộc các nhóm:
 
 | Nhóm | Số ca | Nội dung |
 |---|:---:|---|
-| Tìm kiếm không dấu | 2 | Hàm `bo_dau()` trong Dart và trong SQL |
+| Tìm kiếm không dấu | 2 | Bỏ dấu tiếng Việt; tìm tên không phân biệt dấu trong truy vấn |
 | Dữ liệu mẫu | 4 | Đủ số dòng; mốc thời gian được dịch về hiện tại; đặt lại dữ liệu mẫu |
 | Khóa chính và duy nhất | 4 | Khóa chính kép, hồ sơ 1–1, email, mã định danh thiết bị |
 | Khóa ngoại | 4 | Tham chiếu không tồn tại; không xóa được thiết bị đang dùng |
@@ -236,9 +198,9 @@ Dòng "Mã cảnh báo khớp lần đo" là một tổng kiểm tra trên `MaCa
 | View và thống kê | 5 | Số dòng của view, phân bố mức độ, `HAVING`, trung bình / lớn nhất / nhỏ nhất |
 | Xử lý lỗi và giao dịch | 2 | Lỗi ràng buộc đổi thành thông báo tiếng Việt; giao dịch bị hủy trọn vẹn |
 
-### 6.2 Từ giao diện tới cơ sở dữ liệu
+### 5.2 Từ giao diện tới cơ sở dữ liệu
 
-`test/app_smoke_test.dart` dựng toàn bộ ứng dụng trên một cơ sở dữ liệu SQLite trong bộ nhớ rồi thao tác như người dùng:
+`test/app_smoke_test.dart` dựng toàn bộ ứng dụng trên một cơ sở dữ liệu mới nạp dữ liệu mẫu rồi thao tác như người dùng:
 
 | Ca | Thao tác | Kết quả kiểm tra |
 |---|---|---|
@@ -258,7 +220,7 @@ flutter test
 
 Kết quả hiện tại: 44/44 ca đạt.
 
-### 6.3 Giao diện
+### 5.3 Giao diện
 
 Các màn hình theo yêu cầu của đề tài — danh sách hồ sơ, chi tiết hồ sơ, lịch sử đo, chi tiết lần đo, cảnh báo và thống kê — được chụp lại tự động bằng `tool/chup_man_hinh_test.dart`:
 
@@ -272,17 +234,17 @@ Các màn hình theo yêu cầu của đề tài — danh sách hồ sơ, chi ti
 
 Toàn bộ ảnh (gồm cả giao diện tối và các form nhập) nằm trong thư mục [`screenshots`](screenshots).
 
-## 7. Lỗi phát hiện trong quá trình kiểm thử
+## 6. Lỗi phát hiện trong quá trình kiểm thử
 
 | # | Hiện tượng | Nguyên nhân | Cách khắc phục |
 |---|---|---|---|
 | 1 | Tìm "duc" không ra "Hoàng Minh Đức", tìm "duong" không ra "Dương Văn Nam" | Collation `Vietnamese_CI_AI` coi đ, ư, ơ là chữ cái riêng chứ không phải chữ có dấu | Dùng `COLLATE Latin1_General_CI_AI` cho phép tìm kiếm (ca TK-02) |
-| 2 | Mã cảnh báo của dữ liệu mẫu không theo thứ tự thời gian và khác nhau giữa hai hệ | Lệnh `INSERT … SELECT` trong trigger không có `ORDER BY`, nên thứ tự cấp `IDENTITY` không xác định | Thêm `ORDER BY MaLanDo, MaLoaiChiSo` vào trigger |
+| 2 | Mã cảnh báo của dữ liệu mẫu không theo thứ tự lần đo và không bảo đảm giống nhau giữa các lần nạp | Lệnh `INSERT … SELECT` trong trigger không có `ORDER BY`, nên thứ tự cấp `IDENTITY` không xác định | Thêm `ORDER BY MaLanDo, MaLoaiChiSo` vào trigger |
 | 3 | Gọi `SP_ThemLanDo` với giá trị sai bên trong một giao dịch khác thì nhận lỗi 266 thay vì lỗi 50001 | `ROLLBACK` trong trigger hủy luôn giao dịch của nơi gọi | Thủ tục kiểm tra khoảng hợp lệ trước khi mở giao dịch (ca CR-09) |
 | 4 | Thủ tục kiểm thử báo "Cannot resolve collation conflict" | Thủ tục tạm nằm trong `tempdb`, có collation khác với cơ sở dữ liệu | Thêm `COLLATE DATABASE_DEFAULT` khi so sánh chuỗi |
-| 5 | Màn hình chi tiết lần đo bị tràn chữ ở dòng "Khoảng bình thường" | Hai đoạn chữ đặt cạnh nhau không co giãn | Cho đoạn chữ bên trái co lại khi thiếu chỗ (phát hiện bởi ca 5 ở mục 6.2) |
+| 5 | Màn hình chi tiết lần đo bị tràn chữ ở dòng "Khoảng bình thường" | Hai đoạn chữ đặt cạnh nhau không co giãn | Cho đoạn chữ bên trái co lại khi thiếu chỗ (phát hiện bởi ca 5 ở mục 5.2) |
 
-## 8. Giới hạn
+## 7. Giới hạn
 
 - Bản IPA và APK của ứng dụng được build thành công nhưng **chưa được chạy trên thiết bị thật** trong quá trình kiểm thử này; ứng dụng mới được chạy ở chế độ debug trên iOS Simulator.
 - Chưa có kiểm thử hiệu năng: dữ liệu mẫu chỉ có vài trăm lần đo.

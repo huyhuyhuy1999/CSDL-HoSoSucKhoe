@@ -46,5 +46,3 @@ Các kết quả dưới đây được lấy bằng cách chạy script trên S
 | Form "Thêm hồ sơ" | Mục 2.1 |
 | Form "Sửa hồ sơ" | Mục 3.1 |
 | Nút "Xóa hồ sơ" | Mục 4 |
-
-Ứng dụng dùng SQLite nên câu lệnh được viết lại theo cú pháp SQLite trong `lib/features/ho_so/data/repository_impl/sqlite_ho_so_repository.dart`; việc tìm không dấu dùng hàm `bo_dau()` do ứng dụng đăng ký thay cho `COLLATE Latin1_General_CI_AI`.
