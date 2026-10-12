@@ -1,0 +1,97 @@
+@startuml mo_hinh_quan_he
+' Mô hình quan hệ sau chuẩn hóa: 7 bảng với khóa chính (PK), khóa ngoại (FK)
+' và ràng buộc duy nhất (UQ).
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam linetype ortho
+skinparam roundcorner 6
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #0D9488
+  HeaderBackgroundColor #D9F5F0
+  ArrowColor #475569
+}
+hide circle
+hide methods
+
+entity NGUOI_DUNG {
+  * **MaNguoiDung** : INT <<PK>>
+  --
+  * HoTen : NVARCHAR(100)
+  * GioiTinh : NVARCHAR(5)
+  * NgaySinh : DATE
+  SoDienThoai : VARCHAR(15)
+  Email : VARCHAR(100) <<UQ>>
+  DiaChi : NVARCHAR(200)
+  * NgayTao : DATETIME2
+}
+
+entity HO_SO_SUC_KHOE {
+  * **MaHoSo** : INT <<PK>>
+  --
+  * MaNguoiDung : INT <<FK, UQ>>
+  * ChieuCao : DECIMAL(5,1)
+  * CanNang : DECIMAL(5,1)
+  * NhomMau : VARCHAR(3)
+  TienSuBenh : NVARCHAR(500)
+  DiUng : NVARCHAR(300)
+  * NgayCapNhat : DATETIME2
+}
+
+entity THIET_BI {
+  * **MaThietBi** : INT <<PK>>
+  --
+  * TenThietBi : NVARCHAR(100)
+  * LoaiThietBi : NVARCHAR(50)
+  * MaDinhDanh : VARCHAR(50) <<UQ>>
+  * TrangThai : NVARCHAR(20)
+  MoTa : NVARCHAR(300)
+}
+
+entity LOAI_CHI_SO {
+  * **MaLoaiChiSo** : INT <<PK>>
+  --
+  * KyHieu : VARCHAR(20) <<UQ>>
+  * TenChiSo : NVARCHAR(50) <<UQ>>
+  * DonViDo : NVARCHAR(10)
+  * SoThapPhan : TINYINT
+  * GiaTriMin, GiaTriMax : DECIMAL(6,1)
+  * BinhThuongMin, BinhThuongMax : DECIMAL(6,1)
+  * CanhBaoMin, CanhBaoMax : DECIMAL(6,1)
+}
+
+entity LAN_DO {
+  * **MaLanDo** : INT <<PK>>
+  --
+  * MaNguoiDung : INT <<FK>>
+  MaThietBi : INT <<FK>>
+  * NguonDuLieu : NVARCHAR(20)
+  * ThoiGianDo : DATETIME2
+  GhiChu : NVARCHAR(300)
+}
+
+entity CHI_TIET_LAN_DO {
+  * **MaLanDo** : INT <<PK, FK>>
+  * **MaLoaiChiSo** : INT <<PK, FK>>
+  --
+  * GiaTri : DECIMAL(6,1)
+}
+
+entity CANH_BAO {
+  * **MaCanhBao** : INT <<PK>>
+  --
+  * MaLanDo : INT <<FK, UQ>>
+  * MaLoaiChiSo : INT <<FK, UQ>>
+  * MucDo : NVARCHAR(20)
+  * NoiDung : NVARCHAR(300)
+  * ThoiGianTao : DATETIME2
+  * DaXem : BIT
+}
+
+NGUOI_DUNG ||--o| HO_SO_SUC_KHOE : "1 – 0..1"
+NGUOI_DUNG ||--o{ LAN_DO : "1 – N"
+THIET_BI |o--o{ LAN_DO : "0..1 – N"
+LAN_DO ||--|{ CHI_TIET_LAN_DO : "1 – N"
+LOAI_CHI_SO ||--o{ CHI_TIET_LAN_DO : "1 – N"
+CHI_TIET_LAN_DO ||--o| CANH_BAO : "1 – 0..1"
+@enduml

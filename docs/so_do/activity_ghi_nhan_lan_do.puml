@@ -1,0 +1,57 @@
+@startuml activity_ghi_nhan_lan_do
+' Quy trình ghi nhận một lần đo và tự động tạo cảnh báo.
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 13
+skinparam activity {
+  BackgroundColor #FFFFFF
+  BorderColor #0D9488
+  DiamondBackgroundColor #D9F5F0
+  DiamondBorderColor #0D9488
+}
+
+|Người nhập / Thiết bị|
+start
+:Chọn người được đo;
+:Chọn thời gian đo và nguồn dữ liệu;
+if (Nguồn là thiết bị?) then (có)
+  :Chọn thiết bị đang hoạt động;
+else (không)
+  :Nhập thủ công;
+endif
+:Nhập giá trị các chỉ số đo được;
+
+|Hệ thống|
+if (Có ít nhất một chỉ số\nvà huyết áp đủ cặp, hợp lý?) then (không)
+  :Báo lỗi nhập liệu;
+  stop
+else (có)
+endif
+:Mở giao dịch;
+:Thêm dòng LAN_DO;
+
+|Cơ sở dữ liệu|
+while (Còn chỉ số chưa lưu?) is (còn)
+  :Thêm dòng CHI_TIET_LAN_DO;
+  if (Giá trị trong khoảng hợp lệ?) then (không)
+    :Trigger từ chối, hủy giao dịch;
+    |Hệ thống|
+    :Báo "giá trị ngoài khoảng hợp lệ";
+    stop
+  else (có)
+  endif
+  |Cơ sở dữ liệu|
+  if (Giá trị trong khoảng bình thường?) then (không)
+    if (Vượt khoảng cảnh báo?) then (có)
+      :Trigger tạo CANH_BAO\nmức "Nguy hiểm";
+    else (không)
+      :Trigger tạo CANH_BAO\nmức "Cần chú ý";
+    endif
+  else (có)
+  endif
+endwhile (hết)
+
+|Hệ thống|
+:Xác nhận giao dịch (COMMIT);
+:Hiển thị chi tiết lần đo\nvà các cảnh báo vừa phát sinh;
+stop
+@enduml

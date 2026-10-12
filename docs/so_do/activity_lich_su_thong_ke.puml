@@ -1,0 +1,43 @@
+@startuml activity_lich_su_thong_ke
+' Quy trình xem lịch sử đo và thống kê.
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 13
+skinparam activity {
+  BackgroundColor #FFFFFF
+  BorderColor #0D9488
+  DiamondBackgroundColor #D9F5F0
+  DiamondBorderColor #0D9488
+}
+
+|Người dùng / Nhân viên y tế|
+start
+if (Muốn xem gì?) then (Lịch sử đo)
+  :Mở tab Lịch sử;
+  :Chọn người được đo (hoặc mọi người);
+  :Chọn khoảng thời gian:\nhôm nay, 7 ngày, tháng này, tùy chọn;
+  :Chọn nguồn dữ liệu (tùy chọn);
+  |Hệ thống|
+  :Truy vấn LAN_DO theo bộ lọc,\nghép người dùng, thiết bị và các chỉ số;
+  if (Có kết quả?) then (không)
+    :Hiển thị "Không có lần đo nào";
+    stop
+  else (có)
+  endif
+  :Hiển thị danh sách nhóm theo ngày,\nmỗi lần đo kèm mức độ;
+  |Người dùng / Nhân viên y tế|
+  if (Chạm vào một lần đo?) then (có)
+    |Hệ thống|
+    :Hiển thị chi tiết: từng chỉ số,\nkhoảng bình thường, cảnh báo liên quan;
+  else (không)
+  endif
+else (Thống kê)
+  |Người dùng / Nhân viên y tế|
+  :Mở tab Thống kê;
+  :Chọn 7, 14 hoặc 30 ngày;
+  :Chọn một người (tùy chọn);
+  |Hệ thống|
+  :Tổng hợp bằng GROUP BY:\nsố lần đo theo ngày,\nTB / thấp nhất / cao nhất từng chỉ số,\nphân bố mức độ, xếp hạng cảnh báo;
+  :Vẽ biểu đồ và bảng số liệu;
+endif
+stop
+@enduml

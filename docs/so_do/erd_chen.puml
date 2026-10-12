@@ -1,0 +1,97 @@
+@startchen erd_chen
+' ERD mức khái niệm theo ký hiệu Chen:
+'   hình chữ nhật = thực thể, hình thoi = mối kết hợp, elip = thuộc tính,
+'   thuộc tính gạch chân = khóa, hình chữ nhật kép = thực thể yếu.
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 13
+left to right direction
+
+entity NGUOI_DUNG {
+  MaNguoiDung <<key>>
+  HoTen
+  GioiTinh
+  NgaySinh
+  SoDienThoai
+  Email
+  DiaChi
+}
+
+entity HO_SO_SUC_KHOE {
+  MaHoSo <<key>>
+  ChieuCao
+  CanNang
+  NhomMau
+  TienSuBenh
+  DiUng
+  NgayCapNhat
+}
+
+entity THIET_BI {
+  MaThietBi <<key>>
+  TenThietBi
+  LoaiThietBi
+  MaDinhDanh
+  TrangThai
+}
+
+entity LOAI_CHI_SO {
+  MaLoaiChiSo <<key>>
+  TenChiSo
+  DonViDo
+  "Ngưỡng đánh giá" as Nguong
+}
+
+entity LAN_DO {
+  MaLanDo <<key>>
+  ThoiGianDo
+  NguonDuLieu
+  GhiChu
+}
+
+entity CHI_TIET_LAN_DO <<weak>> {
+  GiaTri
+}
+
+entity CANH_BAO {
+  MaCanhBao <<key>>
+  MucDo
+  NoiDung
+  ThoiGianTao
+  DaXem
+}
+
+relationship "CÓ" as CO {
+}
+relationship "ĐƯỢC ĐO" as DUOC_DO {
+}
+relationship "GHI NHẬN" as GHI_NHAN {
+}
+relationship "GỒM" as GOM <<identifying>> {
+}
+relationship "THUỘC LOẠI" as THUOC_LOAI <<identifying>> {
+}
+relationship "PHÁT SINH" as PHAT_SINH {
+}
+
+' Mỗi người dùng có tối đa một hồ sơ; mỗi hồ sơ thuộc đúng một người.
+NGUOI_DUNG -1- CO
+CO =1= HO_SO_SUC_KHOE
+
+' Một người có nhiều lần đo; mỗi lần đo của đúng một người.
+NGUOI_DUNG -1- DUOC_DO
+DUOC_DO =N= LAN_DO
+
+' Một thiết bị ghi nhận nhiều lần đo; lần đo nhập thủ công không có thiết bị.
+THIET_BI -1- GHI_NHAN
+GHI_NHAN -N- LAN_DO
+
+' Một lần đo gồm nhiều giá trị, mỗi giá trị thuộc một loại chỉ số.
+LAN_DO -1- GOM
+GOM =N= CHI_TIET_LAN_DO
+LOAI_CHI_SO -1- THUOC_LOAI
+THUOC_LOAI =N= CHI_TIET_LAN_DO
+
+' Một giá trị đo vượt ngưỡng phát sinh tối đa một cảnh báo.
+CHI_TIET_LAN_DO -1- PHAT_SINH
+PHAT_SINH =1= CANH_BAO
+@endchen

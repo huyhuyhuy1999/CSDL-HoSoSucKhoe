@@ -1,0 +1,57 @@
+@startuml activity_quan_ly_ho_so
+' Quy trình thêm / sửa / xóa người dùng và hồ sơ sức khỏe.
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 13
+skinparam activity {
+  BackgroundColor #FFFFFF
+  BorderColor #0D9488
+  DiamondBackgroundColor #D9F5F0
+  DiamondBorderColor #0D9488
+}
+
+|Nhân viên y tế|
+start
+:Mở danh sách hồ sơ;
+:Tìm theo tên, lọc theo giới tính, độ tuổi;
+
+switch (Thao tác?)
+case (Thêm mới)
+  :Nhập thông tin cá nhân\nvà thông tin sức khỏe;
+  |Hệ thống|
+  :Kiểm tra dữ liệu nhập;
+  if (Hợp lệ?) then (không)
+    :Đánh dấu trường sai;
+    stop
+  else (có)
+  endif
+  :Trong một giao dịch:\nthêm NGUOI_DUNG rồi HO_SO_SUC_KHOE;
+case (Sửa)
+  |Nhân viên y tế|
+  :Mở chi tiết hồ sơ, chọn "Sửa";
+  :Chỉnh thông tin;
+  |Hệ thống|
+  :Kiểm tra dữ liệu nhập;
+  if (Hợp lệ?) then (không)
+    :Đánh dấu trường sai;
+    stop
+  else (có)
+  endif
+  :Cập nhật NGUOI_DUNG và HO_SO_SUC_KHOE;
+  :Trigger ghi lại NgayCapNhat;
+case (Xóa)
+  |Nhân viên y tế|
+  :Mở chi tiết hồ sơ, chọn "Xóa";
+  |Hệ thống|
+  :Hỏi xác nhận, nêu số lần đo sẽ mất;
+  if (Đồng ý?) then (không)
+    stop
+  else (có)
+  endif
+  :Xóa NGUOI_DUNG;
+  :Hồ sơ, lần đo, giá trị đo, cảnh báo\nbị xóa theo (ON DELETE CASCADE);
+endswitch
+
+|Hệ thống|
+:Thông báo kết quả, tải lại danh sách;
+stop
+@enduml

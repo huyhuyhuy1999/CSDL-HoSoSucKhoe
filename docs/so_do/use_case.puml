@@ -1,0 +1,56 @@
+@startuml use_case
+' Use Case tổng quát của hệ thống.
+' Bố cục: nhân viên y tế bên trái, người dùng và thiết bị bên phải; các use
+' case dùng chung nằm giữa.
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 13
+skinparam packageStyle rectangle
+skinparam usecase {
+  BackgroundColor #FFFFFF
+  BorderColor #0D9488
+  ArrowColor #475569
+}
+skinparam actorBorderColor #0F766E
+left to right direction
+
+actor "Nhân viên y tế" as NV
+
+rectangle "Hệ thống quản lý hồ sơ sức khỏe" {
+  usecase "UC01\nQuản lý người dùng" as UC01
+  usecase "UC02\nQuản lý hồ sơ sức khỏe" as UC02
+  usecase "UC03\nQuản lý thiết bị" as UC03
+  usecase "UC04\nQuản lý loại chỉ số\nvà ngưỡng cảnh báo" as UC04
+  usecase "UC10\nTìm kiếm, lọc" as UC10
+
+  usecase "UC05\nGhi nhận lần đo" as UC05
+  usecase "UC11\nTạo cảnh báo tự động" as UC11
+  usecase "UC06\nXem lịch sử đo" as UC06
+  usecase "UC07\nXem chi tiết lần đo" as UC07
+  usecase "UC08\nXem và xử lý cảnh báo" as UC08
+  usecase "UC09\nXem thống kê" as UC09
+}
+
+actor "Người dùng" as ND
+actor "Thiết bị đo\n(mô phỏng)" as TB
+
+NV --> UC01
+NV --> UC02
+NV --> UC03
+NV --> UC04
+NV --> UC05
+NV --> UC06
+NV --> UC08
+NV --> UC09
+
+UC05 <-- TB
+UC05 <-- ND
+UC06 <-- ND
+UC08 <-- ND
+UC09 <-- ND
+
+UC01 .> UC10 : <<include>>
+UC03 .> UC10 : <<include>>
+UC06 .> UC10 : <<include>>
+UC05 .> UC11 : <<include>>
+UC07 .> UC06 : <<extend>>
+@enduml

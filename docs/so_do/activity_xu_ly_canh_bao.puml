@@ -1,0 +1,48 @@
+@startuml activity_xu_ly_canh_bao
+' Quy trình xem và xử lý cảnh báo.
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 13
+skinparam activity {
+  BackgroundColor #FFFFFF
+  BorderColor #0D9488
+  DiamondBackgroundColor #D9F5F0
+  DiamondBorderColor #0D9488
+}
+
+|Cơ sở dữ liệu|
+start
+:Một giá trị đo ngoài khoảng bình thường\nđược lưu → trigger tạo CANH_BAO (DaXem = 0);
+
+|Hệ thống|
+:Tăng số cảnh báo chưa xem\ntrên thanh điều hướng và Tổng quan;
+
+|Người dùng / Nhân viên y tế|
+:Mở tab Cảnh báo;
+:Lọc: tất cả, chưa xem,\nnguy hiểm, cần chú ý;
+
+|Hệ thống|
+:Truy vấn CANH_BAO theo bộ lọc,\nmới nhất trước;
+
+|Người dùng / Nhân viên y tế|
+if (Thao tác?) then (Mở một cảnh báo)
+  |Hệ thống|
+  :Cập nhật DaXem = 1 cho cảnh báo đó;
+  :Mở chi tiết lần đo liên quan;
+  |Người dùng / Nhân viên y tế|
+  :Xem giá trị, khoảng bình thường, ghi chú;
+  if (Giá trị nhập sai?) then (có)
+    :Xóa lần đo và nhập lại;
+    |Cơ sở dữ liệu|
+    :Cảnh báo của lần đo bị xóa theo;
+  else (không)
+  endif
+else (Đánh dấu đã xem tất cả)
+  |Hệ thống|
+  :Hỏi xác nhận;
+  :Cập nhật DaXem = 1\ncho mọi cảnh báo chưa xem;
+endif
+
+|Hệ thống|
+:Cập nhật lại số cảnh báo chưa xem;
+stop
+@enduml
