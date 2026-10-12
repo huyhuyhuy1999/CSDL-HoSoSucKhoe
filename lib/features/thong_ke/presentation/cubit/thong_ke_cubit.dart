@@ -22,7 +22,7 @@ abstract class ThongKeState with _$ThongKeState {
 
     /// Độ dài khoảng thống kê tính đến hôm nay: 7, 14 hoặc 30 ngày.
     @Default(7) int soNgay,
-    String? maNguoiDung,
+    int? maNguoiDung,
     @Default([]) List<NguoiDung> nguoiDung,
     String? loi,
   }) = _ThongKeState;
@@ -88,7 +88,7 @@ class ThongKeCubit extends Cubit<ThongKeState> {
     tai(imLang: true);
   }
 
-  void chonNguoiDung(String? maNguoiDung) {
+  void chonNguoiDung(int? maNguoiDung) {
     emit(state.copyWith(maNguoiDung: maNguoiDung));
     tai(imLang: true);
   }

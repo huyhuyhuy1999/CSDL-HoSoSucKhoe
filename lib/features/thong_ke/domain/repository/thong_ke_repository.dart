@@ -8,6 +8,6 @@ abstract interface class ThongKeRepository {
   Future<Either<Failure, ThongKeTongHop>> layThongKe({
     required DateTime tuNgay,
     required DateTime denNgay,
-    String? maNguoiDung,
+    int? maNguoiDung,
   });
 }

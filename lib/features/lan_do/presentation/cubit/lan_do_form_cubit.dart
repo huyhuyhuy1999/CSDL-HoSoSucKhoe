@@ -26,7 +26,7 @@ abstract class LanDoFormState with _$LanDoFormState {
     String? loi,
 
     /// Mã lần đo vừa lưu thành công.
-    String? maDaLuu,
+    int? maDaLuu,
   }) = _LanDoFormState;
 }
 
@@ -72,11 +72,11 @@ class LanDoFormCubit extends Cubit<LanDoFormState> {
   }
 
   Future<void> luu({
-    required String maNguoiDung,
+    required int maNguoiDung,
     required DateTime thoiGianDo,
     required NguonDuLieu nguon,
     required Map<MaChiSo, double> giaTri,
-    String? maThietBi,
+    int? maThietBi,
     String ghiChu = '',
   }) async {
     if (state.dangLuu) return;

@@ -9,6 +9,7 @@ import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/utils/dinh_dang.dart';
+import '../../../../core/utils/ma_hien_thi.dart';
 import '../../../../core/utils/trang_thai_tai.dart';
 import '../../../../core/widgets/app_badge.dart';
 import '../../../../core/widgets/app_card.dart';
@@ -33,7 +34,7 @@ class HoSoChiTietScreen extends StatelessWidget {
     @PathParam('maNguoiDung') required this.maNguoiDung,
   });
 
-  final String maNguoiDung;
+  final int maNguoiDung;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,7 @@ class HoSoChiTietScreen extends StatelessWidget {
 class _HoSoChiTietView extends StatelessWidget {
   const _HoSoChiTietView({required this.maNguoiDung});
 
-  final String maNguoiDung;
+  final int maNguoiDung;
 
   Future<void> _xoa(BuildContext context, HoSoTongHop hoSo) async {
     final cubit = context.read<HoSoChiTietCubit>();
@@ -256,7 +257,7 @@ class _ThongTinCaNhan extends StatelessWidget {
     final nd = hoSo.nguoiDung;
     final lienHe = [
       if (nd.soDienThoai.isNotEmpty)
-        (PhosphorIconsRegular.phone, nd.soDienThoai),
+        (PhosphorIconsRegular.phone, DinhDang.soDienThoai(nd.soDienThoai)),
       if (nd.email.isNotEmpty) (PhosphorIconsRegular.envelopeSimple, nd.email),
       if (nd.diaChi.isNotEmpty) (PhosphorIconsRegular.mapPin, nd.diaChi),
     ];
@@ -276,7 +277,8 @@ class _ThongTinCaNhan extends StatelessWidget {
                     Text(nd.hoTen, style: context.text.titleLarge),
                     const SizedBox(height: 2),
                     Text(
-                      'Mã ${nd.maNguoiDung} · Hồ sơ ${hoSo.hoSo.maHoSo}',
+                      'Mã ${MaHienThi.nguoiDung(nd.maNguoiDung)} · '
+                      'Hồ sơ ${MaHienThi.hoSo(hoSo.hoSo.maHoSo)}',
                       style: context.text.bodySmall,
                     ),
                     const SizedBox(height: AppSpacing.sm),

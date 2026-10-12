@@ -31,7 +31,7 @@ class CanhBaoRoute extends PageRouteInfo<void> {
 class HoSoChiTietRoute extends PageRouteInfo<HoSoChiTietRouteArgs> {
   HoSoChiTietRoute({
     Key? key,
-    required String maNguoiDung,
+    required int maNguoiDung,
     List<PageRouteInfo>? children,
   }) : super(
          HoSoChiTietRoute.name,
@@ -47,9 +47,8 @@ class HoSoChiTietRoute extends PageRouteInfo<HoSoChiTietRouteArgs> {
     builder: (data) {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<HoSoChiTietRouteArgs>(
-        orElse: () => HoSoChiTietRouteArgs(
-          maNguoiDung: pathParams.getString('maNguoiDung'),
-        ),
+        orElse: () =>
+            HoSoChiTietRouteArgs(maNguoiDung: pathParams.getInt('maNguoiDung')),
       );
       return HoSoChiTietScreen(key: args.key, maNguoiDung: args.maNguoiDung);
     },
@@ -61,7 +60,7 @@ class HoSoChiTietRouteArgs {
 
   final Key? key;
 
-  final String maNguoiDung;
+  final int maNguoiDung;
 
   @override
   String toString() {
@@ -82,7 +81,7 @@ class HoSoChiTietRouteArgs {
 /// generated route for
 /// [HoSoFormScreen]
 class HoSoFormRoute extends PageRouteInfo<HoSoFormRouteArgs> {
-  HoSoFormRoute({Key? key, String? maNguoiDung, List<PageRouteInfo>? children})
+  HoSoFormRoute({Key? key, int? maNguoiDung, List<PageRouteInfo>? children})
     : super(
         HoSoFormRoute.name,
         args: HoSoFormRouteArgs(key: key, maNguoiDung: maNguoiDung),
@@ -97,8 +96,7 @@ class HoSoFormRoute extends PageRouteInfo<HoSoFormRouteArgs> {
     builder: (data) {
       final queryParams = data.queryParams;
       final args = data.argsAs<HoSoFormRouteArgs>(
-        orElse: () =>
-            HoSoFormRouteArgs(maNguoiDung: queryParams.optString('ma')),
+        orElse: () => HoSoFormRouteArgs(maNguoiDung: queryParams.optInt('ma')),
       );
       return HoSoFormScreen(key: args.key, maNguoiDung: args.maNguoiDung);
     },
@@ -110,7 +108,7 @@ class HoSoFormRouteArgs {
 
   final Key? key;
 
-  final String? maNguoiDung;
+  final int? maNguoiDung;
 
   @override
   String toString() {
@@ -149,7 +147,7 @@ class HoSoListRoute extends PageRouteInfo<void> {
 class LanDoChiTietRoute extends PageRouteInfo<LanDoChiTietRouteArgs> {
   LanDoChiTietRoute({
     Key? key,
-    required String maLanDo,
+    required int maLanDo,
     List<PageRouteInfo>? children,
   }) : super(
          LanDoChiTietRoute.name,
@@ -166,7 +164,7 @@ class LanDoChiTietRoute extends PageRouteInfo<LanDoChiTietRouteArgs> {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<LanDoChiTietRouteArgs>(
         orElse: () =>
-            LanDoChiTietRouteArgs(maLanDo: pathParams.getString('maLanDo')),
+            LanDoChiTietRouteArgs(maLanDo: pathParams.getInt('maLanDo')),
       );
       return LanDoChiTietScreen(key: args.key, maLanDo: args.maLanDo);
     },
@@ -178,7 +176,7 @@ class LanDoChiTietRouteArgs {
 
   final Key? key;
 
-  final String maLanDo;
+  final int maLanDo;
 
   @override
   String toString() {
@@ -199,7 +197,7 @@ class LanDoChiTietRouteArgs {
 /// generated route for
 /// [LanDoFormScreen]
 class LanDoFormRoute extends PageRouteInfo<LanDoFormRouteArgs> {
-  LanDoFormRoute({Key? key, String? maNguoiDung, List<PageRouteInfo>? children})
+  LanDoFormRoute({Key? key, int? maNguoiDung, List<PageRouteInfo>? children})
     : super(
         LanDoFormRoute.name,
         args: LanDoFormRouteArgs(key: key, maNguoiDung: maNguoiDung),
@@ -215,7 +213,7 @@ class LanDoFormRoute extends PageRouteInfo<LanDoFormRouteArgs> {
       final queryParams = data.queryParams;
       final args = data.argsAs<LanDoFormRouteArgs>(
         orElse: () =>
-            LanDoFormRouteArgs(maNguoiDung: queryParams.optString('nguoiDung')),
+            LanDoFormRouteArgs(maNguoiDung: queryParams.optInt('nguoiDung')),
       );
       return LanDoFormScreen(key: args.key, maNguoiDung: args.maNguoiDung);
     },
@@ -227,7 +225,7 @@ class LanDoFormRouteArgs {
 
   final Key? key;
 
-  final String? maNguoiDung;
+  final int? maNguoiDung;
 
   @override
   String toString() {
@@ -266,7 +264,7 @@ class LichSuDoRoute extends PageRouteInfo<void> {
 class LichSuNguoiDungRoute extends PageRouteInfo<LichSuNguoiDungRouteArgs> {
   LichSuNguoiDungRoute({
     Key? key,
-    required String maNguoiDung,
+    required int maNguoiDung,
     List<PageRouteInfo>? children,
   }) : super(
          LichSuNguoiDungRoute.name,
@@ -283,7 +281,7 @@ class LichSuNguoiDungRoute extends PageRouteInfo<LichSuNguoiDungRouteArgs> {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<LichSuNguoiDungRouteArgs>(
         orElse: () => LichSuNguoiDungRouteArgs(
-          maNguoiDung: pathParams.getString('maNguoiDung'),
+          maNguoiDung: pathParams.getInt('maNguoiDung'),
         ),
       );
       return LichSuNguoiDungScreen(
@@ -299,7 +297,7 @@ class LichSuNguoiDungRouteArgs {
 
   final Key? key;
 
-  final String maNguoiDung;
+  final int maNguoiDung;
 
   @override
   String toString() {

@@ -19,6 +19,7 @@ import '../../../lan_do/presentation/utils/chi_so_ui.dart';
 import '../../../lan_do/presentation/widgets/lan_do_card.dart';
 import '../../domain/entity/tong_quan.dart';
 import '../cubit/tong_quan_cubit.dart';
+import '../widgets/co_so_du_lieu_sheet.dart';
 import '../widgets/hero_card.dart';
 import '../widgets/stat_card.dart';
 import '../widgets/xu_huong_card.dart';
@@ -57,6 +58,11 @@ class _TongQuanView extends StatelessWidget {
           icon: PhosphorIconsRegular.cpu,
           tooltip: 'Thiết bị',
           onTap: () => context.router.push(const ThietBiRoute()),
+        ),
+        AppIconButton(
+          icon: PhosphorIconsRegular.database,
+          tooltip: 'Cơ sở dữ liệu',
+          onTap: () => moCoSoDuLieuSheet(context),
         ),
       ],
     );

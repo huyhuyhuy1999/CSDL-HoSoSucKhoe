@@ -55,6 +55,12 @@ abstract final class DinhDang {
     return value.toStringAsFixed(thapPhan).replaceAll('.', ',');
   }
 
+  /// Số điện thoại lưu toàn chữ số ("0901234567") hiển thị thành "0901 234 567".
+  static String soDienThoai(String so) {
+    if (so.length != 10 || int.tryParse(so) == null) return so;
+    return '${so.substring(0, 4)} ${so.substring(4, 7)} ${so.substring(7)}';
+  }
+
   static DateTime _dauNgay(DateTime d) => DateTime(d.year, d.month, d.day);
 }
 

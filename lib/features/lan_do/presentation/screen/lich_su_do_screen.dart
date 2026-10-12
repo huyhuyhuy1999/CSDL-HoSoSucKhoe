@@ -40,7 +40,7 @@ class LichSuNguoiDungScreen extends StatelessWidget {
     @PathParam('maNguoiDung') required this.maNguoiDung,
   });
 
-  final String maNguoiDung;
+  final int maNguoiDung;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class _LichSuDoView extends StatelessWidget {
   const _LichSuDoView({required this.maNguoiDung});
 
   /// Khác `null` khi màn hình bị khóa vào một người.
-  final String? maNguoiDung;
+  final int? maNguoiDung;
 
   bool get _theoNguoi => maNguoiDung != null;
 

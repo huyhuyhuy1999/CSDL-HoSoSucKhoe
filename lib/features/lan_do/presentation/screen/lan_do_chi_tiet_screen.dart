@@ -9,6 +9,7 @@ import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/utils/dinh_dang.dart';
+import '../../../../core/utils/ma_hien_thi.dart';
 import '../../../../core/utils/trang_thai_tai.dart';
 import '../../../../core/widgets/app_badge.dart';
 import '../../../../core/widgets/app_card.dart';
@@ -31,7 +32,7 @@ class LanDoChiTietScreen extends StatelessWidget {
     @PathParam('maLanDo') required this.maLanDo,
   });
 
-  final String maLanDo;
+  final int maLanDo;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class LanDoChiTietScreen extends StatelessWidget {
 class _LanDoChiTietView extends StatelessWidget {
   const _LanDoChiTietView({required this.maLanDo});
 
-  final String maLanDo;
+  final int maLanDo;
 
   Future<void> _xoa(BuildContext context) async {
     final cubit = context.read<LanDoChiTietCubit>();
@@ -53,7 +54,7 @@ class _LanDoChiTietView extends StatelessWidget {
       context,
       tieuDe: 'Xóa lần đo?',
       noiDung:
-          'Lần đo $maLanDo cùng các cảnh báo của nó sẽ bị xóa. '
+          'Lần đo ${MaHienThi.lanDo(maLanDo)} cùng các cảnh báo của nó sẽ bị xóa. '
           'Thao tác này không thể hoàn tác.',
       nhanDongY: 'Xóa',
       nguyHiem: true,
@@ -66,7 +67,7 @@ class _LanDoChiTietView extends StatelessWidget {
       context.showSnack(loi);
       return;
     }
-    context.showSnack('Đã xóa lần đo $maLanDo.');
+    context.showSnack('Đã xóa lần đo ${MaHienThi.lanDo(maLanDo)}.');
     context.router.maybePop();
   }
 
@@ -259,7 +260,11 @@ class _ThongTin extends StatelessWidget {
         (PhosphorIconsRegular.deviceMobile, 'Thiết bị', thietBi.tenThietBi),
         (PhosphorIconsRegular.barcode, 'Mã định danh', thietBi.maDinhDanh),
       ],
-      (PhosphorIconsRegular.hash, 'Mã lần đo', lanDo.lanDo.maLanDo),
+      (
+        PhosphorIconsRegular.hash,
+        'Mã lần đo',
+        MaHienThi.lanDo(lanDo.lanDo.maLanDo),
+      ),
     ];
 
     return AppCard(
@@ -284,7 +289,7 @@ class _ThongTin extends StatelessWidget {
                         const SizedBox(height: 2),
                         Text(
                           '${nd.gioiTinh.nhan} · ${nd.tuoi} tuổi · '
-                          '${nd.maNguoiDung}',
+                          '${MaHienThi.nguoiDung(nd.maNguoiDung)}',
                           style: context.text.bodySmall,
                         ),
                       ],

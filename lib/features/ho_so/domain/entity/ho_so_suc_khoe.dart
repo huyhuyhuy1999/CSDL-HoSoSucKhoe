@@ -29,8 +29,8 @@ class HoSoSucKhoe extends Equatable {
     this.diUng = '',
   });
 
-  final String maHoSo;
-  final String maNguoiDung;
+  final int maHoSo;
+  final int maNguoiDung;
 
   /// Chiều cao (cm).
   final double chieuCao;

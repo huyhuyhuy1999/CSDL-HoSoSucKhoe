@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 mixin _$ThongKeState {
 
  TrangThaiTai get trangThai; ThongKeTongHop? get duLieu;/// Độ dài khoảng thống kê tính đến hôm nay: 7, 14 hoặc 30 ngày.
- int get soNgay; String? get maNguoiDung; List<NguoiDung> get nguoiDung; String? get loi;
+ int get soNgay; int? get maNguoiDung; List<NguoiDung> get nguoiDung; String? get loi;
 /// Create a copy of ThongKeState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -52,7 +52,7 @@ abstract mixin class $ThongKeStateCopyWith<$Res>  {
   factory $ThongKeStateCopyWith(ThongKeState value, $Res Function(ThongKeState) _then) = _$ThongKeStateCopyWithImpl;
 @useResult
 $Res call({
- TrangThaiTai trangThai, ThongKeTongHop? duLieu, int soNgay, String? maNguoiDung, List<NguoiDung> nguoiDung, String? loi
+ TrangThaiTai trangThai, ThongKeTongHop? duLieu, int soNgay, int? maNguoiDung, List<NguoiDung> nguoiDung, String? loi
 });
 
 
@@ -75,7 +75,7 @@ trangThai: null == trangThai ? _self.trangThai : trangThai // ignore: cast_nulla
 as TrangThaiTai,duLieu: freezed == duLieu ? _self.duLieu : duLieu // ignore: cast_nullable_to_non_nullable
 as ThongKeTongHop?,soNgay: null == soNgay ? _self.soNgay : soNgay // ignore: cast_nullable_to_non_nullable
 as int,maNguoiDung: freezed == maNguoiDung ? _self.maNguoiDung : maNguoiDung // ignore: cast_nullable_to_non_nullable
-as String?,nguoiDung: null == nguoiDung ? _self.nguoiDung : nguoiDung // ignore: cast_nullable_to_non_nullable
+as int?,nguoiDung: null == nguoiDung ? _self.nguoiDung : nguoiDung // ignore: cast_nullable_to_non_nullable
 as List<NguoiDung>,loi: freezed == loi ? _self.loi : loi // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -162,7 +162,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  ThongKeTongHop? duLieu,  int soNgay,  String? maNguoiDung,  List<NguoiDung> nguoiDung,  String? loi)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  ThongKeTongHop? duLieu,  int soNgay,  int? maNguoiDung,  List<NguoiDung> nguoiDung,  String? loi)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ThongKeState() when $default != null:
 return $default(_that.trangThai,_that.duLieu,_that.soNgay,_that.maNguoiDung,_that.nguoiDung,_that.loi);case _:
@@ -183,7 +183,7 @@ return $default(_that.trangThai,_that.duLieu,_that.soNgay,_that.maNguoiDung,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  ThongKeTongHop? duLieu,  int soNgay,  String? maNguoiDung,  List<NguoiDung> nguoiDung,  String? loi)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  ThongKeTongHop? duLieu,  int soNgay,  int? maNguoiDung,  List<NguoiDung> nguoiDung,  String? loi)  $default,) {final _that = this;
 switch (_that) {
 case _ThongKeState():
 return $default(_that.trangThai,_that.duLieu,_that.soNgay,_that.maNguoiDung,_that.nguoiDung,_that.loi);case _:
@@ -203,7 +203,7 @@ return $default(_that.trangThai,_that.duLieu,_that.soNgay,_that.maNguoiDung,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TrangThaiTai trangThai,  ThongKeTongHop? duLieu,  int soNgay,  String? maNguoiDung,  List<NguoiDung> nguoiDung,  String? loi)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TrangThaiTai trangThai,  ThongKeTongHop? duLieu,  int soNgay,  int? maNguoiDung,  List<NguoiDung> nguoiDung,  String? loi)?  $default,) {final _that = this;
 switch (_that) {
 case _ThongKeState() when $default != null:
 return $default(_that.trangThai,_that.duLieu,_that.soNgay,_that.maNguoiDung,_that.nguoiDung,_that.loi);case _:
@@ -225,7 +225,7 @@ class _ThongKeState extends ThongKeState {
 @override final  ThongKeTongHop? duLieu;
 /// Độ dài khoảng thống kê tính đến hôm nay: 7, 14 hoặc 30 ngày.
 @override@JsonKey() final  int soNgay;
-@override final  String? maNguoiDung;
+@override final  int? maNguoiDung;
  final  List<NguoiDung> _nguoiDung;
 @override@JsonKey() List<NguoiDung> get nguoiDung {
   if (_nguoiDung is EqualUnmodifiableListView) return _nguoiDung;
@@ -267,7 +267,7 @@ abstract mixin class _$ThongKeStateCopyWith<$Res> implements $ThongKeStateCopyWi
   factory _$ThongKeStateCopyWith(_ThongKeState value, $Res Function(_ThongKeState) _then) = __$ThongKeStateCopyWithImpl;
 @override @useResult
 $Res call({
- TrangThaiTai trangThai, ThongKeTongHop? duLieu, int soNgay, String? maNguoiDung, List<NguoiDung> nguoiDung, String? loi
+ TrangThaiTai trangThai, ThongKeTongHop? duLieu, int soNgay, int? maNguoiDung, List<NguoiDung> nguoiDung, String? loi
 });
 
 
@@ -290,7 +290,7 @@ trangThai: null == trangThai ? _self.trangThai : trangThai // ignore: cast_nulla
 as TrangThaiTai,duLieu: freezed == duLieu ? _self.duLieu : duLieu // ignore: cast_nullable_to_non_nullable
 as ThongKeTongHop?,soNgay: null == soNgay ? _self.soNgay : soNgay // ignore: cast_nullable_to_non_nullable
 as int,maNguoiDung: freezed == maNguoiDung ? _self.maNguoiDung : maNguoiDung // ignore: cast_nullable_to_non_nullable
-as String?,nguoiDung: null == nguoiDung ? _self._nguoiDung : nguoiDung // ignore: cast_nullable_to_non_nullable
+as int?,nguoiDung: null == nguoiDung ? _self._nguoiDung : nguoiDung // ignore: cast_nullable_to_non_nullable
 as List<NguoiDung>,loi: freezed == loi ? _self.loi : loi // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

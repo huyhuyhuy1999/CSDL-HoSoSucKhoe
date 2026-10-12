@@ -16,9 +16,9 @@ class CanhBao extends Equatable {
     this.daXem = false,
   });
 
-  final String maCanhBao;
-  final String maLanDo;
-  final String maLoaiChiSo;
+  final int maCanhBao;
+  final int maLanDo;
+  final int maLoaiChiSo;
   final MucDo mucDo;
   final String noiDung;
   final DateTime thoiGianTao;

@@ -12,6 +12,6 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   Intl.defaultLocale = 'vi';
   await initializeDateFormatting('vi');
-  configureDependencies();
+  await configureDependencies();
   runApp(const App());
 }

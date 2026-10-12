@@ -8,6 +8,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/utils/dinh_dang.dart';
+import '../../../../core/utils/ma_hien_thi.dart';
 import '../../../../core/utils/trang_thai_tai.dart';
 import '../../../../core/widgets/app_badge.dart';
 import '../../../../core/widgets/app_card.dart';
@@ -192,7 +193,7 @@ class _ThietBiCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 3),
                     Text(
-                      '${tb.maThietBi} · ${tb.loaiThietBi.nhan}',
+                      '${MaHienThi.thietBi(tb.maThietBi)} · ${tb.loaiThietBi.nhan}',
                       style: context.text.bodySmall,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

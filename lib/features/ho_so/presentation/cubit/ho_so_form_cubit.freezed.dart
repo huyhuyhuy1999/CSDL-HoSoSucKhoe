@@ -17,7 +17,7 @@ mixin _$HoSoFormState {
 
  TrangThaiTai get trangThai;/// Hồ sơ đang sửa; `null` khi thêm mới.
  HoSoTongHop? get banDau; bool get dangLuu; String? get loi;/// Mã người dùng vừa lưu thành công.
- String? get maDaLuu;
+ int? get maDaLuu;
 /// Create a copy of HoSoFormState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -53,7 +53,7 @@ abstract mixin class $HoSoFormStateCopyWith<$Res>  {
   factory $HoSoFormStateCopyWith(HoSoFormState value, $Res Function(HoSoFormState) _then) = _$HoSoFormStateCopyWithImpl;
 @useResult
 $Res call({
- TrangThaiTai trangThai, HoSoTongHop? banDau, bool dangLuu, String? loi, String? maDaLuu
+ TrangThaiTai trangThai, HoSoTongHop? banDau, bool dangLuu, String? loi, int? maDaLuu
 });
 
 
@@ -77,7 +77,7 @@ as TrangThaiTai,banDau: freezed == banDau ? _self.banDau : banDau // ignore: cas
 as HoSoTongHop?,dangLuu: null == dangLuu ? _self.dangLuu : dangLuu // ignore: cast_nullable_to_non_nullable
 as bool,loi: freezed == loi ? _self.loi : loi // ignore: cast_nullable_to_non_nullable
 as String?,maDaLuu: freezed == maDaLuu ? _self.maDaLuu : maDaLuu // ignore: cast_nullable_to_non_nullable
-as String?,
+as int?,
   ));
 }
 
@@ -162,7 +162,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  HoSoTongHop? banDau,  bool dangLuu,  String? loi,  String? maDaLuu)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  HoSoTongHop? banDau,  bool dangLuu,  String? loi,  int? maDaLuu)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HoSoFormState() when $default != null:
 return $default(_that.trangThai,_that.banDau,_that.dangLuu,_that.loi,_that.maDaLuu);case _:
@@ -183,7 +183,7 @@ return $default(_that.trangThai,_that.banDau,_that.dangLuu,_that.loi,_that.maDaL
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  HoSoTongHop? banDau,  bool dangLuu,  String? loi,  String? maDaLuu)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  HoSoTongHop? banDau,  bool dangLuu,  String? loi,  int? maDaLuu)  $default,) {final _that = this;
 switch (_that) {
 case _HoSoFormState():
 return $default(_that.trangThai,_that.banDau,_that.dangLuu,_that.loi,_that.maDaLuu);case _:
@@ -203,7 +203,7 @@ return $default(_that.trangThai,_that.banDau,_that.dangLuu,_that.loi,_that.maDaL
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TrangThaiTai trangThai,  HoSoTongHop? banDau,  bool dangLuu,  String? loi,  String? maDaLuu)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TrangThaiTai trangThai,  HoSoTongHop? banDau,  bool dangLuu,  String? loi,  int? maDaLuu)?  $default,) {final _that = this;
 switch (_that) {
 case _HoSoFormState() when $default != null:
 return $default(_that.trangThai,_that.banDau,_that.dangLuu,_that.loi,_that.maDaLuu);case _:
@@ -227,7 +227,7 @@ class _HoSoFormState implements HoSoFormState {
 @override@JsonKey() final  bool dangLuu;
 @override final  String? loi;
 /// Mã người dùng vừa lưu thành công.
-@override final  String? maDaLuu;
+@override final  int? maDaLuu;
 
 /// Create a copy of HoSoFormState
 /// with the given fields replaced by the non-null parameter values.
@@ -261,7 +261,7 @@ abstract mixin class _$HoSoFormStateCopyWith<$Res> implements $HoSoFormStateCopy
   factory _$HoSoFormStateCopyWith(_HoSoFormState value, $Res Function(_HoSoFormState) _then) = __$HoSoFormStateCopyWithImpl;
 @override @useResult
 $Res call({
- TrangThaiTai trangThai, HoSoTongHop? banDau, bool dangLuu, String? loi, String? maDaLuu
+ TrangThaiTai trangThai, HoSoTongHop? banDau, bool dangLuu, String? loi, int? maDaLuu
 });
 
 
@@ -285,7 +285,7 @@ as TrangThaiTai,banDau: freezed == banDau ? _self.banDau : banDau // ignore: cas
 as HoSoTongHop?,dangLuu: null == dangLuu ? _self.dangLuu : dangLuu // ignore: cast_nullable_to_non_nullable
 as bool,loi: freezed == loi ? _self.loi : loi // ignore: cast_nullable_to_non_nullable
 as String?,maDaLuu: freezed == maDaLuu ? _self.maDaLuu : maDaLuu // ignore: cast_nullable_to_non_nullable
-as String?,
+as int?,
   ));
 }
 

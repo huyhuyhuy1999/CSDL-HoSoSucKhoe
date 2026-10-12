@@ -7,12 +7,19 @@ import 'muc_do.dart';
 
 /// Nguồn sinh ra dữ liệu của một lần đo.
 enum NguonDuLieu {
-  thietBi('Thiết bị đo'),
-  nhapThuCong('Nhập thủ công');
+  thietBi('Thiết bị đo', 'Thiết bị'),
+  nhapThuCong('Nhập thủ công', 'Thủ công');
 
-  const NguonDuLieu(this.nhan);
+  const NguonDuLieu(this.nhan, this.giaTriCsdl);
 
+  /// Nhãn hiển thị trên giao diện.
   final String nhan;
+
+  /// Giá trị cột LAN_DO.NguonDuLieu trong cơ sở dữ liệu.
+  final String giaTriCsdl;
+
+  static NguonDuLieu tuCsdl(String giaTri) =>
+      values.firstWhere((nguon) => nguon.giaTriCsdl == giaTri);
 }
 
 /// Bảng LAN_DO.
@@ -26,13 +33,13 @@ class LanDo extends Equatable {
     this.ghiChu = '',
   });
 
-  final String maLanDo;
-  final String maNguoiDung;
+  final int maLanDo;
+  final int maNguoiDung;
   final DateTime thoiGianDo;
   final NguonDuLieu nguon;
 
   /// `null` khi dữ liệu được nhập thủ công.
-  final String? maThietBi;
+  final int? maThietBi;
   final String ghiChu;
 
   @override
@@ -54,8 +61,8 @@ class ChiTietLanDo extends Equatable {
     required this.giaTri,
   });
 
-  final String maLanDo;
-  final String maLoaiChiSo;
+  final int maLanDo;
+  final int maLoaiChiSo;
   final double giaTri;
 
   @override

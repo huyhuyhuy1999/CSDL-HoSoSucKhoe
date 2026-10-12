@@ -80,7 +80,7 @@ class CanhBaoCubit extends Cubit<CanhBaoState> {
     tai(imLang: true);
   }
 
-  Future<void> danhDauDaXem(String maCanhBao) =>
+  Future<void> danhDauDaXem(int maCanhBao) =>
       _repository.danhDauDaXem(maCanhBao);
 
   Future<void> danhDauTatCaDaXem() => _repository.danhDauTatCaDaXem();

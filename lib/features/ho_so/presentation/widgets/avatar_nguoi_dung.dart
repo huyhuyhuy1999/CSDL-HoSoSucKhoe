@@ -23,8 +23,7 @@ class AvatarNguoiDung extends StatelessWidget {
       (p.spo2, p.spo2Soft),
       (p.success, p.successSoft),
     ];
-    final chiSo = nguoiDung.maNguoiDung.codeUnits.fold(0, (a, b) => a + b);
-    final (mau, nen) = tong[chiSo % tong.length];
+    final (mau, nen) = tong[nguoiDung.maNguoiDung % tong.length];
 
     return Container(
       width: size,

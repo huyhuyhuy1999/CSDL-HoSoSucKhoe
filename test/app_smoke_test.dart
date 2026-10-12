@@ -5,14 +5,16 @@ import 'package:ho_so_suc_khoe/core/di/injection.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
-/// Kiểm tra nhanh: app khởi động được và cả năm tab đều hiển thị nội dung.
+/// Kiểm tra nhanh: app khởi động được trên cơ sở dữ liệu SQLite và cả năm tab
+/// đều hiển thị nội dung.
 void main() {
   setUpAll(() async {
     Intl.defaultLocale = 'vi';
     await initializeDateFormatting('vi');
   });
 
-  setUp(configureDependencies);
+  // Mỗi test dùng một cơ sở dữ liệu SQLite mới trong bộ nhớ.
+  setUp(() => configureDependencies(csdlTrongBoNho: true));
   tearDown(getIt.reset);
 
   Future<void> moApp(WidgetTester tester) async {

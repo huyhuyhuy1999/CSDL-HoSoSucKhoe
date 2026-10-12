@@ -17,7 +17,7 @@ mixin _$LanDoFormState {
 
  TrangThaiTai get trangThai; List<NguoiDung> get nguoiDung;/// Chỉ gồm thiết bị đang hoạt động.
  List<ThietBi> get thietBi; List<LoaiChiSo> get loaiChiSo; bool get dangLuu; String? get loi;/// Mã lần đo vừa lưu thành công.
- String? get maDaLuu;
+ int? get maDaLuu;
 /// Create a copy of LanDoFormState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -53,7 +53,7 @@ abstract mixin class $LanDoFormStateCopyWith<$Res>  {
   factory $LanDoFormStateCopyWith(LanDoFormState value, $Res Function(LanDoFormState) _then) = _$LanDoFormStateCopyWithImpl;
 @useResult
 $Res call({
- TrangThaiTai trangThai, List<NguoiDung> nguoiDung, List<ThietBi> thietBi, List<LoaiChiSo> loaiChiSo, bool dangLuu, String? loi, String? maDaLuu
+ TrangThaiTai trangThai, List<NguoiDung> nguoiDung, List<ThietBi> thietBi, List<LoaiChiSo> loaiChiSo, bool dangLuu, String? loi, int? maDaLuu
 });
 
 
@@ -79,7 +79,7 @@ as List<ThietBi>,loaiChiSo: null == loaiChiSo ? _self.loaiChiSo : loaiChiSo // i
 as List<LoaiChiSo>,dangLuu: null == dangLuu ? _self.dangLuu : dangLuu // ignore: cast_nullable_to_non_nullable
 as bool,loi: freezed == loi ? _self.loi : loi // ignore: cast_nullable_to_non_nullable
 as String?,maDaLuu: freezed == maDaLuu ? _self.maDaLuu : maDaLuu // ignore: cast_nullable_to_non_nullable
-as String?,
+as int?,
   ));
 }
 
@@ -164,7 +164,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  List<NguoiDung> nguoiDung,  List<ThietBi> thietBi,  List<LoaiChiSo> loaiChiSo,  bool dangLuu,  String? loi,  String? maDaLuu)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  List<NguoiDung> nguoiDung,  List<ThietBi> thietBi,  List<LoaiChiSo> loaiChiSo,  bool dangLuu,  String? loi,  int? maDaLuu)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LanDoFormState() when $default != null:
 return $default(_that.trangThai,_that.nguoiDung,_that.thietBi,_that.loaiChiSo,_that.dangLuu,_that.loi,_that.maDaLuu);case _:
@@ -185,7 +185,7 @@ return $default(_that.trangThai,_that.nguoiDung,_that.thietBi,_that.loaiChiSo,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  List<NguoiDung> nguoiDung,  List<ThietBi> thietBi,  List<LoaiChiSo> loaiChiSo,  bool dangLuu,  String? loi,  String? maDaLuu)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  List<NguoiDung> nguoiDung,  List<ThietBi> thietBi,  List<LoaiChiSo> loaiChiSo,  bool dangLuu,  String? loi,  int? maDaLuu)  $default,) {final _that = this;
 switch (_that) {
 case _LanDoFormState():
 return $default(_that.trangThai,_that.nguoiDung,_that.thietBi,_that.loaiChiSo,_that.dangLuu,_that.loi,_that.maDaLuu);case _:
@@ -205,7 +205,7 @@ return $default(_that.trangThai,_that.nguoiDung,_that.thietBi,_that.loaiChiSo,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TrangThaiTai trangThai,  List<NguoiDung> nguoiDung,  List<ThietBi> thietBi,  List<LoaiChiSo> loaiChiSo,  bool dangLuu,  String? loi,  String? maDaLuu)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TrangThaiTai trangThai,  List<NguoiDung> nguoiDung,  List<ThietBi> thietBi,  List<LoaiChiSo> loaiChiSo,  bool dangLuu,  String? loi,  int? maDaLuu)?  $default,) {final _that = this;
 switch (_that) {
 case _LanDoFormState() when $default != null:
 return $default(_that.trangThai,_that.nguoiDung,_that.thietBi,_that.loaiChiSo,_that.dangLuu,_that.loi,_that.maDaLuu);case _:
@@ -250,7 +250,7 @@ class _LanDoFormState implements LanDoFormState {
 @override@JsonKey() final  bool dangLuu;
 @override final  String? loi;
 /// Mã lần đo vừa lưu thành công.
-@override final  String? maDaLuu;
+@override final  int? maDaLuu;
 
 /// Create a copy of LanDoFormState
 /// with the given fields replaced by the non-null parameter values.
@@ -284,7 +284,7 @@ abstract mixin class _$LanDoFormStateCopyWith<$Res> implements $LanDoFormStateCo
   factory _$LanDoFormStateCopyWith(_LanDoFormState value, $Res Function(_LanDoFormState) _then) = __$LanDoFormStateCopyWithImpl;
 @override @useResult
 $Res call({
- TrangThaiTai trangThai, List<NguoiDung> nguoiDung, List<ThietBi> thietBi, List<LoaiChiSo> loaiChiSo, bool dangLuu, String? loi, String? maDaLuu
+ TrangThaiTai trangThai, List<NguoiDung> nguoiDung, List<ThietBi> thietBi, List<LoaiChiSo> loaiChiSo, bool dangLuu, String? loi, int? maDaLuu
 });
 
 
@@ -310,7 +310,7 @@ as List<ThietBi>,loaiChiSo: null == loaiChiSo ? _self._loaiChiSo : loaiChiSo // 
 as List<LoaiChiSo>,dangLuu: null == dangLuu ? _self.dangLuu : dangLuu // ignore: cast_nullable_to_non_nullable
 as bool,loi: freezed == loi ? _self.loi : loi // ignore: cast_nullable_to_non_nullable
 as String?,maDaLuu: freezed == maDaLuu ? _self.maDaLuu : maDaLuu // ignore: cast_nullable_to_non_nullable
-as String?,
+as int?,
   ));
 }
 

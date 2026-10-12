@@ -58,13 +58,13 @@ abstract interface class HoSoRepository {
     NhomTuoi? nhomTuoi,
   });
 
-  Future<Either<Failure, HoSoTongHop>> layChiTiet(String maNguoiDung);
+  Future<Either<Failure, HoSoTongHop>> layChiTiet(int maNguoiDung);
 
   /// Thêm mới khi [maNguoiDung] là `null`, ngược lại cập nhật.
   Future<Either<Failure, HoSoTongHop>> luu(
     ThongTinHoSo thongTin, {
-    String? maNguoiDung,
+    int? maNguoiDung,
   });
 
-  Future<Either<Failure, Unit>> xoa(String maNguoiDung);
+  Future<Either<Failure, Unit>> xoa(int maNguoiDung);
 }

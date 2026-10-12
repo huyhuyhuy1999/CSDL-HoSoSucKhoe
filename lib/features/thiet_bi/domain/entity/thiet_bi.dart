@@ -7,18 +7,26 @@ enum TrangThaiThietBi {
 
   const TrangThaiThietBi(this.nhan);
 
+  /// Nhãn hiển thị, cũng là giá trị cột THIET_BI.TrangThai.
   final String nhan;
+
+  static TrangThaiThietBi tuCsdl(String giaTri) =>
+      values.firstWhere((tt) => tt.nhan == giaTri);
 }
 
 enum LoaiThietBi {
   daChiSo('Thiết bị đa chỉ số'),
-  spo2('Máy đo SpO2 / nhịp tim'),
+  spo2('Máy đo SpO2'),
   nhietKe('Nhiệt kế'),
   huyetAp('Máy đo huyết áp');
 
   const LoaiThietBi(this.nhan);
 
+  /// Nhãn hiển thị, cũng là giá trị cột THIET_BI.LoaiThietBi.
   final String nhan;
+
+  static LoaiThietBi tuCsdl(String giaTri) =>
+      values.firstWhere((loai) => loai.nhan == giaTri);
 }
 
 /// Bảng THIET_BI (dữ liệu mô phỏng — không kết nối phần cứng thật).
@@ -32,7 +40,7 @@ class ThietBi extends Equatable {
     this.moTa = '',
   });
 
-  final String maThietBi;
+  final int maThietBi;
   final String tenThietBi;
   final LoaiThietBi loaiThietBi;
 

@@ -39,9 +39,9 @@ class LanDoChiTietCubit extends Cubit<LanDoChiTietState> {
   final LanDoRepository _lanDoRepository;
   final CanhBaoRepository _canhBaoRepository;
   late final StreamSubscription<void> _sub;
-  String? _maLanDo;
+  int? _maLanDo;
 
-  Future<void> tai(String maLanDo, {bool imLang = false}) async {
+  Future<void> tai(int maLanDo, {bool imLang = false}) async {
     _maLanDo = maLanDo;
     if (!imLang) emit(state.copyWith(trangThai: TrangThaiTai.dangTai));
 

@@ -11,11 +11,11 @@ abstract interface class CanhBaoRepository {
   Future<Either<Failure, List<CanhBaoDayDu>>> layDanhSach({
     MucDo? mucDo,
     bool chiChuaXem = false,
-    String? maNguoiDung,
-    String? maLanDo,
+    int? maNguoiDung,
+    int? maLanDo,
   });
 
-  Future<Either<Failure, Unit>> danhDauDaXem(String maCanhBao);
+  Future<Either<Failure, Unit>> danhDauDaXem(int maCanhBao);
 
   Future<Either<Failure, Unit>> danhDauTatCaDaXem();
 }

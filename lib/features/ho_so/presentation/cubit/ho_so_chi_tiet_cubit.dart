@@ -47,9 +47,9 @@ class HoSoChiTietCubit extends Cubit<HoSoChiTietState> {
   final LanDoRepository _lanDoRepository;
   final CanhBaoRepository _canhBaoRepository;
   late final StreamSubscription<void> _sub;
-  String? _maNguoiDung;
+  int? _maNguoiDung;
 
-  Future<void> tai(String maNguoiDung, {bool imLang = false}) async {
+  Future<void> tai(int maNguoiDung, {bool imLang = false}) async {
     _maNguoiDung = maNguoiDung;
     if (!imLang) emit(state.copyWith(trangThai: TrangThaiTai.dangTai));
 

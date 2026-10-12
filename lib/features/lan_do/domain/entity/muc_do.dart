@@ -6,7 +6,11 @@ enum MucDo {
 
   const MucDo(this.nhan);
 
+  /// Nhãn hiển thị, cũng là giá trị cột CANH_BAO.MucDo và cột MucDo của các view.
   final String nhan;
+
+  static MucDo tuCsdl(String giaTri) =>
+      values.firstWhere((mucDo) => mucDo.nhan == giaTri);
 
   /// Mức nặng hơn trong hai mức.
   MucDo nangHon(MucDo other) => index >= other.index ? this : other;

@@ -13,6 +13,10 @@ import 'package:flutter/widgets.dart';
 abstract final class PhosphorIconsRegular {
   static const String _family = 'PhosphorRegular';
 
+  static const IconData arrowCounterClockwise = IconData(
+    0xe038,
+    fontFamily: _family,
+  );
   static const IconData arrowsClockwise = IconData(0xe094, fontFamily: _family);
   static const IconData barcode = IconData(0xe0b8, fontFamily: _family);
   static const IconData bell = IconData(0xe0ce, fontFamily: _family);
@@ -31,6 +35,7 @@ abstract final class PhosphorIconsRegular {
     0xe1a0,
     fontFamily: _family,
   );
+  static const IconData database = IconData(0xe1de, fontFamily: _family);
   static const IconData cpu = IconData(0xe610, fontFamily: _family);
   static const IconData deviceMobile = IconData(0xe1e0, fontFamily: _family);
   static const IconData dotsThreeVertical = IconData(
@@ -71,6 +76,7 @@ abstract final class PhosphorIconsFill {
     0xe1a0,
     fontFamily: _family,
   );
+  static const IconData database = IconData(0xe1de, fontFamily: _family);
   static const IconData cpu = IconData(0xe610, fontFamily: _family);
   static const IconData drop = IconData(0xe210, fontFamily: _family);
   static const IconData firstAidKit = IconData(0xe570, fontFamily: _family);

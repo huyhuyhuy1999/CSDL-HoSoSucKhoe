@@ -121,8 +121,8 @@ void main() {
     await _napFont();
   });
 
-  setUp(() {
-    configureDependencies();
+  setUp(() async {
+    await configureDependencies(csdlTrongBoNho: true);
     debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
     debugDisableShadows = false;
   });
@@ -192,6 +192,10 @@ void main() {
     await _cuon(tester, -2000);
     await tester.tap(find.byTooltip('Thiết bị'));
     await _chup(tester, '16_thiet_bi');
+    await _quayLai(tester);
+
+    await tester.tap(find.byTooltip('Cơ sở dữ liệu'));
+    await _chup(tester, '17_co_so_du_lieu');
 
     khoiPhucDebug();
   });

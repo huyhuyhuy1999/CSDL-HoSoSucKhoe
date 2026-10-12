@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 mixin _$LichSuDoState {
 
  TrangThaiTai get trangThai; List<LanDoDayDu> get danhSach;/// Danh sách người dùng cho bộ chọn "người được đo".
- List<NguoiDung> get nguoiDung; String? get maNguoiDung; KhoangThoiGian get khoang;/// Chỉ dùng khi [khoang] là [KhoangThoiGian.tuyChon].
+ List<NguoiDung> get nguoiDung; int? get maNguoiDung; KhoangThoiGian get khoang;/// Chỉ dùng khi [khoang] là [KhoangThoiGian.tuyChon].
  DateTime? get tuNgay; DateTime? get denNgay; NguonDuLieu? get nguon; String? get loi;
 /// Create a copy of LichSuDoState
 /// with the given fields replaced by the non-null parameter values.
@@ -53,7 +53,7 @@ abstract mixin class $LichSuDoStateCopyWith<$Res>  {
   factory $LichSuDoStateCopyWith(LichSuDoState value, $Res Function(LichSuDoState) _then) = _$LichSuDoStateCopyWithImpl;
 @useResult
 $Res call({
- TrangThaiTai trangThai, List<LanDoDayDu> danhSach, List<NguoiDung> nguoiDung, String? maNguoiDung, KhoangThoiGian khoang, DateTime? tuNgay, DateTime? denNgay, NguonDuLieu? nguon, String? loi
+ TrangThaiTai trangThai, List<LanDoDayDu> danhSach, List<NguoiDung> nguoiDung, int? maNguoiDung, KhoangThoiGian khoang, DateTime? tuNgay, DateTime? denNgay, NguonDuLieu? nguon, String? loi
 });
 
 
@@ -76,7 +76,7 @@ trangThai: null == trangThai ? _self.trangThai : trangThai // ignore: cast_nulla
 as TrangThaiTai,danhSach: null == danhSach ? _self.danhSach : danhSach // ignore: cast_nullable_to_non_nullable
 as List<LanDoDayDu>,nguoiDung: null == nguoiDung ? _self.nguoiDung : nguoiDung // ignore: cast_nullable_to_non_nullable
 as List<NguoiDung>,maNguoiDung: freezed == maNguoiDung ? _self.maNguoiDung : maNguoiDung // ignore: cast_nullable_to_non_nullable
-as String?,khoang: null == khoang ? _self.khoang : khoang // ignore: cast_nullable_to_non_nullable
+as int?,khoang: null == khoang ? _self.khoang : khoang // ignore: cast_nullable_to_non_nullable
 as KhoangThoiGian,tuNgay: freezed == tuNgay ? _self.tuNgay : tuNgay // ignore: cast_nullable_to_non_nullable
 as DateTime?,denNgay: freezed == denNgay ? _self.denNgay : denNgay // ignore: cast_nullable_to_non_nullable
 as DateTime?,nguon: freezed == nguon ? _self.nguon : nguon // ignore: cast_nullable_to_non_nullable
@@ -166,7 +166,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  List<LanDoDayDu> danhSach,  List<NguoiDung> nguoiDung,  String? maNguoiDung,  KhoangThoiGian khoang,  DateTime? tuNgay,  DateTime? denNgay,  NguonDuLieu? nguon,  String? loi)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  List<LanDoDayDu> danhSach,  List<NguoiDung> nguoiDung,  int? maNguoiDung,  KhoangThoiGian khoang,  DateTime? tuNgay,  DateTime? denNgay,  NguonDuLieu? nguon,  String? loi)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LichSuDoState() when $default != null:
 return $default(_that.trangThai,_that.danhSach,_that.nguoiDung,_that.maNguoiDung,_that.khoang,_that.tuNgay,_that.denNgay,_that.nguon,_that.loi);case _:
@@ -187,7 +187,7 @@ return $default(_that.trangThai,_that.danhSach,_that.nguoiDung,_that.maNguoiDung
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  List<LanDoDayDu> danhSach,  List<NguoiDung> nguoiDung,  String? maNguoiDung,  KhoangThoiGian khoang,  DateTime? tuNgay,  DateTime? denNgay,  NguonDuLieu? nguon,  String? loi)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TrangThaiTai trangThai,  List<LanDoDayDu> danhSach,  List<NguoiDung> nguoiDung,  int? maNguoiDung,  KhoangThoiGian khoang,  DateTime? tuNgay,  DateTime? denNgay,  NguonDuLieu? nguon,  String? loi)  $default,) {final _that = this;
 switch (_that) {
 case _LichSuDoState():
 return $default(_that.trangThai,_that.danhSach,_that.nguoiDung,_that.maNguoiDung,_that.khoang,_that.tuNgay,_that.denNgay,_that.nguon,_that.loi);case _:
@@ -207,7 +207,7 @@ return $default(_that.trangThai,_that.danhSach,_that.nguoiDung,_that.maNguoiDung
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TrangThaiTai trangThai,  List<LanDoDayDu> danhSach,  List<NguoiDung> nguoiDung,  String? maNguoiDung,  KhoangThoiGian khoang,  DateTime? tuNgay,  DateTime? denNgay,  NguonDuLieu? nguon,  String? loi)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TrangThaiTai trangThai,  List<LanDoDayDu> danhSach,  List<NguoiDung> nguoiDung,  int? maNguoiDung,  KhoangThoiGian khoang,  DateTime? tuNgay,  DateTime? denNgay,  NguonDuLieu? nguon,  String? loi)?  $default,) {final _that = this;
 switch (_that) {
 case _LichSuDoState() when $default != null:
 return $default(_that.trangThai,_that.danhSach,_that.nguoiDung,_that.maNguoiDung,_that.khoang,_that.tuNgay,_that.denNgay,_that.nguon,_that.loi);case _:
@@ -242,7 +242,7 @@ class _LichSuDoState extends LichSuDoState {
   return EqualUnmodifiableListView(_nguoiDung);
 }
 
-@override final  String? maNguoiDung;
+@override final  int? maNguoiDung;
 @override@JsonKey() final  KhoangThoiGian khoang;
 /// Chỉ dùng khi [khoang] là [KhoangThoiGian.tuyChon].
 @override final  DateTime? tuNgay;
@@ -282,7 +282,7 @@ abstract mixin class _$LichSuDoStateCopyWith<$Res> implements $LichSuDoStateCopy
   factory _$LichSuDoStateCopyWith(_LichSuDoState value, $Res Function(_LichSuDoState) _then) = __$LichSuDoStateCopyWithImpl;
 @override @useResult
 $Res call({
- TrangThaiTai trangThai, List<LanDoDayDu> danhSach, List<NguoiDung> nguoiDung, String? maNguoiDung, KhoangThoiGian khoang, DateTime? tuNgay, DateTime? denNgay, NguonDuLieu? nguon, String? loi
+ TrangThaiTai trangThai, List<LanDoDayDu> danhSach, List<NguoiDung> nguoiDung, int? maNguoiDung, KhoangThoiGian khoang, DateTime? tuNgay, DateTime? denNgay, NguonDuLieu? nguon, String? loi
 });
 
 
@@ -305,7 +305,7 @@ trangThai: null == trangThai ? _self.trangThai : trangThai // ignore: cast_nulla
 as TrangThaiTai,danhSach: null == danhSach ? _self._danhSach : danhSach // ignore: cast_nullable_to_non_nullable
 as List<LanDoDayDu>,nguoiDung: null == nguoiDung ? _self._nguoiDung : nguoiDung // ignore: cast_nullable_to_non_nullable
 as List<NguoiDung>,maNguoiDung: freezed == maNguoiDung ? _self.maNguoiDung : maNguoiDung // ignore: cast_nullable_to_non_nullable
-as String?,khoang: null == khoang ? _self.khoang : khoang // ignore: cast_nullable_to_non_nullable
+as int?,khoang: null == khoang ? _self.khoang : khoang // ignore: cast_nullable_to_non_nullable
 as KhoangThoiGian,tuNgay: freezed == tuNgay ? _self.tuNgay : tuNgay // ignore: cast_nullable_to_non_nullable
 as DateTime?,denNgay: freezed == denNgay ? _self.denNgay : denNgay // ignore: cast_nullable_to_non_nullable
 as DateTime?,nguon: freezed == nguon ? _self.nguon : nguon // ignore: cast_nullable_to_non_nullable

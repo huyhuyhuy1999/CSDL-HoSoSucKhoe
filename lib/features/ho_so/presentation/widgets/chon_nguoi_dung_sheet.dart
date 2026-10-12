@@ -9,14 +9,14 @@ import '../../domain/entity/nguoi_dung.dart';
 import 'avatar_nguoi_dung.dart';
 
 /// Kết quả chọn người dùng: [maNguoiDung] là `null` khi chọn "Tất cả".
-typedef LuaChonNguoiDung = ({String? maNguoiDung});
+typedef LuaChonNguoiDung = ({int? maNguoiDung});
 
 /// Mở bảng chọn người dùng. Trả về `null` nếu người dùng đóng bảng mà
 /// không chọn gì.
 Future<LuaChonNguoiDung?> chonNguoiDung(
   BuildContext context, {
   required List<NguoiDung> danhSach,
-  String? maDangChon,
+  int? maDangChon,
   bool choPhepTatCa = true,
 }) {
   return showModalBottomSheet<LuaChonNguoiDung>(
@@ -39,7 +39,7 @@ class _ChonNguoiDungSheet extends StatefulWidget {
   });
 
   final List<NguoiDung> danhSach;
-  final String? maDangChon;
+  final int? maDangChon;
   final bool choPhepTatCa;
 
   @override

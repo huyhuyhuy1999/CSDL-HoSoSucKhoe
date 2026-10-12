@@ -7,7 +7,11 @@ enum GioiTinh {
 
   const GioiTinh(this.nhan);
 
+  /// Nhãn hiển thị, cũng là giá trị cột NGUOI_DUNG.GioiTinh.
   final String nhan;
+
+  static GioiTinh tuCsdl(String giaTri) =>
+      values.firstWhere((gt) => gt.nhan == giaTri, orElse: () => khac);
 }
 
 /// Nhóm tuổi dùng cho bộ lọc "độ tuổi".
@@ -38,7 +42,7 @@ class NguoiDung extends Equatable {
     this.diaChi = '',
   });
 
-  final String maNguoiDung;
+  final int maNguoiDung;
   final String hoTen;
   final GioiTinh gioiTinh;
   final DateTime ngaySinh;

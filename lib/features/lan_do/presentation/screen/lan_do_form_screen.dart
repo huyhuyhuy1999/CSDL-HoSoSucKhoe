@@ -9,6 +9,7 @@ import '../../../../core/router/app_router.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/utils/dinh_dang.dart';
+import '../../../../core/utils/ma_hien_thi.dart';
 import '../../../../core/utils/trang_thai_tai.dart';
 import '../../../../core/widgets/app_badge.dart';
 import '../../../../core/widgets/app_inputs.dart';
@@ -29,7 +30,7 @@ import '../widgets/muc_do_badge.dart';
 class LanDoFormScreen extends StatelessWidget {
   const LanDoFormScreen({super.key, @QueryParam('nguoiDung') this.maNguoiDung});
 
-  final String? maNguoiDung;
+  final int? maNguoiDung;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class LanDoFormScreen extends StatelessWidget {
 class _LanDoFormView extends StatefulWidget {
   const _LanDoFormView({required this.maNguoiDung});
 
-  final String? maNguoiDung;
+  final int? maNguoiDung;
 
   @override
   State<_LanDoFormView> createState() => _LanDoFormViewState();
@@ -56,10 +57,10 @@ class _LanDoFormViewState extends State<_LanDoFormView> {
   };
   final _ghiChu = TextEditingController();
 
-  late String? _maNguoiDung = widget.maNguoiDung;
+  late int? _maNguoiDung = widget.maNguoiDung;
   DateTime _thoiGian = DateTime.now();
   NguonDuLieu _nguon = NguonDuLieu.nhapThuCong;
-  String? _maThietBi;
+  int? _maThietBi;
   bool _thieuNguoiDung = false;
 
   @override
@@ -176,7 +177,7 @@ class _LanDoFormViewState extends State<_LanDoFormView> {
           (truoc.loi != sau.loi && sau.trangThai == TrangThaiTai.thanhCong),
       listener: (context, state) {
         if (state.maDaLuu case final ma?) {
-          context.showSnack('Đã lưu lần đo $ma.');
+          context.showSnack('Đã lưu lần đo ${MaHienThi.lanDo(ma)}.');
           context.router.replace(LanDoChiTietRoute(maLanDo: ma));
           return;
         }

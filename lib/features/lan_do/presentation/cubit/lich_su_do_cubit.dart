@@ -35,7 +35,7 @@ abstract class LichSuDoState with _$LichSuDoState {
 
     /// Danh sách người dùng cho bộ chọn "người được đo".
     @Default([]) List<NguoiDung> nguoiDung,
-    String? maNguoiDung,
+    int? maNguoiDung,
     @Default(KhoangThoiGian.bayNgay) KhoangThoiGian khoang,
 
     /// Chỉ dùng khi [khoang] là [KhoangThoiGian.tuyChon].
@@ -68,7 +68,7 @@ class LichSuDoCubit extends Cubit<LichSuDoState> {
   int _luot = 0;
 
   Future<void> khoiTao({
-    String? maNguoiDung,
+    int? maNguoiDung,
     KhoangThoiGian khoang = KhoangThoiGian.bayNgay,
   }) {
     emit(state.copyWith(maNguoiDung: maNguoiDung, khoang: khoang));
@@ -107,7 +107,7 @@ class LichSuDoCubit extends Cubit<LichSuDoState> {
     );
   }
 
-  void chonNguoiDung(String? maNguoiDung) {
+  void chonNguoiDung(int? maNguoiDung) {
     emit(state.copyWith(maNguoiDung: maNguoiDung));
     tai(imLang: true);
   }

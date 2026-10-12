@@ -22,7 +22,7 @@ import '../cubit/ho_so_form_cubit.dart';
 class HoSoFormScreen extends StatelessWidget {
   const HoSoFormScreen({super.key, @QueryParam('ma') this.maNguoiDung});
 
-  final String? maNguoiDung;
+  final int? maNguoiDung;
 
   @override
   Widget build(BuildContext context) {

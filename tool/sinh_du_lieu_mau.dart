@@ -544,7 +544,13 @@ List<LanDo> sinhLanDo() {
       maNguoiDung: 3,
       thoiGian: luc(15, 55),
       maThietBi: 1,
-      giaTri: {nhietDo: 36.6, nhipTim: 66, spo2: 99, tamThu: 117, tamTruong: 75},
+      giaTri: {
+        nhietDo: 36.6,
+        nhipTim: 66,
+        spo2: 99,
+        tamThu: 117,
+        tamTruong: 75,
+      },
     ),
     LanDo(
       maNguoiDung: 4,
@@ -595,7 +601,8 @@ class TrinhXuat {
   }
 
   /// Chuỗi ASCII (mã, email, số điện thoại).
-  String ascii(String? s) => s == null ? 'NULL' : "'${s.replaceAll("'", "''")}'";
+  String ascii(String? s) =>
+      s == null ? 'NULL' : "'${s.replaceAll("'", "''")}'";
 
   String so(num? v) {
     if (v == null) return 'NULL';
@@ -627,14 +634,14 @@ class TrinhXuat {
   }) {
     if (_laSqlServer && coMaTuTang) dong('SET IDENTITY_INSERT $bang ON;');
     for (var i = 0; i < cacDong.length; i += coLo) {
-      final lo = cacDong.sublist(i, min(i + coLo, cacDong.length));
+      final nhom = cacDong.sublist(i, min(i + coLo, cacDong.length));
       dong('INSERT INTO $bang (${cot.join(', ')}) VALUES');
-      for (var j = 0; j < lo.length; j++) {
-        dong('    (${lo[j].join(', ')})${j == lo.length - 1 ? ';' : ','}');
+      for (var j = 0; j < nhom.length; j++) {
+        dong('    (${nhom[j].join(', ')})${j == nhom.length - 1 ? ';' : ','}');
       }
     }
     if (_laSqlServer && coMaTuTang) dong('SET IDENTITY_INSERT $bang OFF;');
-    this.lo();
+    lo();
   }
 
   String xuat(List<LanDo> lanDo) {
@@ -647,13 +654,21 @@ class TrinhXuat {
     dong('-- DỮ LIỆU MẪU — ${_laSqlServer ? 'SQL Server' : 'SQLite'}');
     dong('--');
     dong('-- File này được sinh tự động bởi tool/sinh_du_lieu_mau.dart.');
-    dong('-- Đừng sửa tay: hãy sửa công cụ rồi chạy lại để hai hệ luôn khớp nhau.');
+    dong(
+      '-- Đừng sửa tay: hãy sửa công cụ rồi chạy lại để hai hệ luôn khớp nhau.',
+    );
     dong('--');
-    dong('-- ${nguoiMau.length} người dùng, ${nguoiMau.length} hồ sơ, '
-        '${thietBi.length} thiết bị, ${loaiChiSo.length} loại chỉ số,');
-    dong('-- ${lanDo.length} lần đo và $soChiTiet giá trị đo, '
-        'từ ${ngay(ngayDau)} đến ${ngay(ngayCuoi)}.');
-    dong('-- Cảnh báo do trigger TRG_CHI_TIET_LAN_DO_CanhBao tự sinh khi chèn giá trị đo.');
+    dong(
+      '-- ${nguoiMau.length} người dùng, ${nguoiMau.length} hồ sơ, '
+      '${thietBi.length} thiết bị, ${loaiChiSo.length} loại chỉ số,',
+    );
+    dong(
+      '-- ${lanDo.length} lần đo và $soChiTiet giá trị đo, '
+      'từ ${ngay(ngayDau)} đến ${ngay(ngayCuoi)}.',
+    );
+    dong(
+      '-- Cảnh báo do trigger TRG_CHI_TIET_LAN_DO_CanhBao tự sinh khi chèn giá trị đo.',
+    );
     dong('-- ${'=' * 76}');
     dong();
     if (_laSqlServer) {
@@ -664,7 +679,9 @@ class TrinhXuat {
       dong();
     }
 
-    dong('-- LOAI_CHI_SO: danh mục chỉ số và ngưỡng đánh giá (Người 7, Người 10)');
+    dong(
+      '-- LOAI_CHI_SO: danh mục chỉ số và ngưỡng đánh giá (Người 7, Người 10)',
+    );
     chen(
       'LOAI_CHI_SO',
       [
@@ -701,7 +718,14 @@ class TrinhXuat {
     dong('-- THIET_BI: thiết bị mô phỏng (Người 9)');
     chen(
       'THIET_BI',
-      ['MaThietBi', 'TenThietBi', 'LoaiThietBi', 'MaDinhDanh', 'TrangThai', 'MoTa'],
+      [
+        'MaThietBi',
+        'TenThietBi',
+        'LoaiThietBi',
+        'MaDinhDanh',
+        'TrangThai',
+        'MoTa',
+      ],
       [
         for (final t in thietBi)
           [
@@ -780,7 +804,14 @@ class TrinhXuat {
     dong('-- LAN_DO (Người 8)');
     chen(
       'LAN_DO',
-      ['MaLanDo', 'MaNguoiDung', 'MaThietBi', 'NguonDuLieu', 'ThoiGianDo', 'GhiChu'],
+      [
+        'MaLanDo',
+        'MaNguoiDung',
+        'MaThietBi',
+        'NguonDuLieu',
+        'ThoiGianDo',
+        'GhiChu',
+      ],
       [
         for (final ld in lanDo)
           [
@@ -800,7 +831,8 @@ class TrinhXuat {
       ['MaLanDo', 'MaLoaiChiSo', 'GiaTri'],
       [
         for (final ld in lanDo)
-          for (final e in ld.giaTri.entries) [so(ld.ma), so(e.key), so(e.value)],
+          for (final e in ld.giaTri.entries)
+            [so(ld.ma), so(e.key), so(e.value)],
       ],
       coMaTuTang: false,
     );

@@ -19,7 +19,7 @@ abstract class HoSoFormState with _$HoSoFormState {
     String? loi,
 
     /// Mã người dùng vừa lưu thành công.
-    String? maDaLuu,
+    int? maDaLuu,
   }) = _HoSoFormState;
 }
 
@@ -28,9 +28,9 @@ class HoSoFormCubit extends Cubit<HoSoFormState> {
   HoSoFormCubit(this._repository) : super(const HoSoFormState());
 
   final HoSoRepository _repository;
-  String? _maNguoiDung;
+  int? _maNguoiDung;
 
-  Future<void> khoiTao(String? maNguoiDung) async {
+  Future<void> khoiTao(int? maNguoiDung) async {
     _maNguoiDung = maNguoiDung;
     if (maNguoiDung == null) {
       emit(state.copyWith(trangThai: TrangThaiTai.thanhCong));
